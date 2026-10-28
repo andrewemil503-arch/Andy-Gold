@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Andy’s Gold</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A1828"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<script>try{var t=localStorage.getItem("andy_theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#EDF0F5;--bgi:none;--sf:#fff;--sf2:#F5F7FA;--ink:#0B1B2E;--mu:#5E6E81;--ln:#E0E6EE;--gd:#8A6410;--gf:#C9A24B;--gg:linear-gradient(135deg,#EBCB7A,#B98B2E);--up:#0E7C5E;--dn:#B3362D;--r:12px;--sh:0 1px 2px rgba(11,27,46,.05),0 10px 28px rgba(11,27,46,.07);--nav:68px}
+:root[data-theme=dark]{color-scheme:dark;--bg:#060E18;--bgi:radial-gradient(120% 55% at 50% -8%,#13283F 0%,#060E18 62%);--sf:#0E1A2A;--sf2:#132338;--ink:#EAF0F7;--mu:#8EA0B5;--ln:#1D2E45;--gd:#E2BC62;--gf:#D8B25A;--up:#3FCBA5;--dn:#F27B6E;--sh:0 1px 0 rgba(255,255,255,.04) inset,0 12px 30px rgba(0,0,0,.38)}
+@media (prefers-color-scheme:dark){:root:not([data-theme]){color-scheme:dark;--bg:#060E18;--bgi:radial-gradient(120% 55% at 50% -8%,#13283F 0%,#060E18 62%);--sf:#0E1A2A;--sf2:#132338;--ink:#EAF0F7;--mu:#8EA0B5;--ln:#1D2E45;--gd:#E2BC62;--gf:#D8B25A;--up:#3FCBA5;--dn:#F27B6E;--sh:0 1px 0 rgba(255,255,255,.04) inset,0 12px 30px rgba(0,0,0,.38)}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bgi),var(--bg);background-attachment:fixed;color:var(--ink);font:15px/1.5 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums;padding:env(safe-area-inset-top,0px) 0 calc(var(--nav) + 36px + env(safe-area-inset-bottom,0px));-webkit-tap-highlight-color:transparent}
+main{max-width:620px;margin:0 auto;padding:0 16px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 0 6px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.01em}.logo i{font-style:normal;color:var(--gd)}
+.mark{width:34px;height:34px;border-radius:11px;background:var(--gg);display:grid;place-items:center;box-shadow:0 5px 14px rgba(185,139,46,.38)}.mark svg{width:19px;height:19px;fill:none;stroke:#2A1C00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hb{display:flex;gap:8px;align-items:center}
+.ibtn,.pillb{height:36px;border-radius:999px;border:1px solid var(--ln);background:var(--sf);color:var(--ink);cursor:pointer;font:inherit;font-weight:700;font-size:13px;box-shadow:var(--sh)}
+.ibtn{width:36px;display:grid;place-items:center;padding:0}.ibtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}.pillb{padding:0 14px}
+.live{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--mu);margin:4px 2px 14px;line-height:1.4}.live b{flex:none;margin-top:4px;width:8px;height:8px;border-radius:50%;background:var(--mu)}.live.on b{background:var(--up);animation:pulse 2.2s infinite}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:620px;z-index:30;display:flex;gap:2px;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));background:var(--sf);background:color-mix(in srgb,var(--sf) 88%,transparent);-webkit-backdrop-filter:saturate(1.5) blur(18px);backdrop-filter:saturate(1.5) blur(18px);border-top:1px solid var(--ln);box-shadow:0 -8px 26px rgba(11,27,46,.07)}
+nav button{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;color:var(--mu);font:inherit;font-size:10.5px;font-weight:700;padding:7px 2px 6px;border-radius:13px;cursor:pointer;line-height:1.15;text-align:center;transition:background .2s,color .2s}
+nav button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--gd);background:var(--sf2);background:color-mix(in srgb,var(--gf) 17%,transparent)}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--gf);outline-offset:2px}
+.pg{display:none}.pg.on{display:block;animation:fade .28s ease-out}
+.lbl{font-size:13px;color:var(--mu)}.up{color:var(--up)}.dn{color:var(--dn)}
+.hero{position:relative;overflow:hidden;color:#F2F6FB;--gd:#E2BC62;--gf:#E2BC62;background:radial-gradient(75% 60% at 100% 0%,rgba(226,188,98,.20),transparent 70%),linear-gradient(150deg,#16365A,#0A1828 72%);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:20px 20px 16px;box-shadow:0 16px 36px rgba(8,22,40,.3)}
+.hero .lbl,.hero .note{color:rgba(242,246,251,.72)}.hero .up{color:#45D6AC}.hero .dn{color:#FF8D80}
+.hero .n{font-size:clamp(40px,12.5vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:6px 0 14px}
+.hero .s{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.hero .s>span{display:flex;flex-direction:column;gap:2px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.09);border-radius:15px;padding:10px 13px;font-size:13px}.hero .s>span:empty{display:none}.hero .s b{font-size:19px}
+.hero svg{display:block;margin-top:14px}.hero h3{color:rgba(242,246,251,.72);margin:0 0 6px}.hero .tot b{color:#fff}.hero .tot .lbl{color:rgba(242,246,251,.72)}
+h3{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--mu);margin:26px 2px 10px}h3::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--gg);flex:none}html:not([lang=ar]) h3{text-transform:uppercase;letter-spacing:.07em}
+table{width:100%;border-collapse:separate;border-spacing:0;background:var(--sf);border-radius:18px;box-shadow:var(--sh);overflow:hidden}
+td,th{padding:13px 14px;border-bottom:1px solid var(--ln);text-align:end;font-weight:500}th{font-size:11.5px;color:var(--mu);font-weight:700;background:var(--sf2);padding:10px 14px}tr:last-child td{border-bottom:0}
+td:first-child,th:first-child{text-align:start}td:first-child{font-weight:700}tr[data-c]{transition:background .15s}tr[data-c]:active{background:var(--sf2)}
+.card{background:var(--sf);border-radius:20px;padding:16px;box-shadow:var(--sh);margin:0 0 14px}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--sf2);border:1px solid var(--ln);border-radius:13px;padding:3px;gap:3px}.seg button{border:0;background:none;color:var(--mu);font:inherit;font-weight:700;font-size:14px;padding:10px 6px;border-radius:10px;cursor:pointer;transition:all .18s}.seg button.on{background:var(--sf);color:var(--ink);box-shadow:0 1px 5px rgba(11,27,46,.16)}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--mu);margin:14px 0 6px}
+input,select{width:100%;font:inherit;font-size:16px;font-weight:600;padding:12px 14px;border:1px solid var(--ln);border-radius:13px;background:var(--sf2);color:var(--ink);transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{outline:none;border-color:var(--gf);box-shadow:0 0 0 3px rgba(201,162,75,.26)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.btn{background:var(--gg);color:#2A1C00;border:0;border-radius:13px;padding:13px 18px;font:inherit;font-weight:800;cursor:pointer;margin-top:14px;box-shadow:0 7px 18px rgba(185,139,46,.32);transition:transform .08s}.btn:active{transform:scale(.97)}
+.line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--ln)}.hero .line{border-color:rgba(255,255,255,.14)}
+.tot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 0 4px}.tot b{font-size:30px;letter-spacing:-.02em}
+#cr{background:var(--sf);border-radius:20px;padding:4px 16px 0;box-shadow:var(--sh);overflow:hidden}#cr .tot{background:var(--sf2);margin:8px -16px 0;padding:16px}#cr .note{margin:0 -16px;padding:0 16px 14px;background:var(--sf2);margin-top:0}
+details{background:var(--sf);border-radius:18px;box-shadow:var(--sh);padding:15px 16px;margin:16px 0 0}
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;font-weight:700;font-size:14px}summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:8px;height:8px;border-inline-end:2px solid var(--mu);border-bottom:2px solid var(--mu);transform:rotate(45deg);transition:transform .2s;margin-top:-3px}details[open] summary::after{transform:rotate(-135deg);margin-top:3px}details[open]>summary{margin-bottom:6px}
+.note{font-size:12.5px;color:var(--mu);margin-top:10px;line-height:1.55}
+#log{display:flex;flex-direction:column;gap:12px;min-height:240px;padding:4px 0 12px}
+.m{max-width:86%;padding:12px 15px;border-radius:19px;white-space:pre-line;line-height:1.55}
+.m.u{align-self:flex-end;background:var(--ink);color:var(--bg);border-end-end-radius:6px}
+.m.b{align-self:flex-start;position:relative;margin-inline-start:36px;background:var(--sf);box-shadow:var(--sh);border-end-start-radius:6px}
+.m.b::before{content:"A";position:absolute;inset-inline-start:-36px;top:0;width:27px;height:27px;border-radius:50%;background:var(--gg);color:#2A1C00;display:grid;place-items:center;font-weight:800;font-size:12px}
+.dots i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--mu);margin:0 2px;animation:bl 1s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;white-space:nowrap;border:1px solid var(--ln);background:var(--sf);color:var(--ink);font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border-radius:99px;cursor:pointer;box-shadow:var(--sh)}.chips button:active{background:var(--sf2)}
+.ask{display:flex;gap:8px;position:sticky;z-index:5;bottom:calc(var(--nav) + env(safe-area-inset-bottom,0px) + 6px);padding:8px 0 2px;background:linear-gradient(to top,var(--bg) 62%,transparent)}
+.ask input{flex:1;border-radius:999px;padding-inline:18px;background:var(--sf);box-shadow:var(--sh)}.ask .btn{margin:0;border-radius:999px;padding-inline:22px}
+.top{display:flex;justify-content:flex-end;margin-bottom:6px}.top .pillb{height:32px;font-size:12.5px;box-shadow:none}
+.mt{height:8px;background:var(--ln);border-radius:4px;margin:6px 0 14px;overflow:hidden}.mt i{display:block;height:100%;border-radius:4px}
+h4{margin:0}svg{direction:ltr}.fl-up{animation:fu 1.3s ease-out}.fl-dn{animation:fd 1.3s ease-out}
+html[lang=ar] *{letter-spacing:0!important}html[lang=ar] body,html[lang=ar] input,html[lang=ar] select,html[lang=ar] button{font-family:Cairo,Manrope,system-ui,sans-serif}
+footer{font-size:12px;color:var(--mu);margin-top:30px;line-height:1.6;padding:0 4px}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes bl{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,203,165,.55)}70%{box-shadow:0 0 0 7px rgba(63,203,165,0)}100%{box-shadow:0 0 0 0 rgba(63,203,165,0)}}
+@keyframes fu{from{color:#45D6AC}}@keyframes fd{from{color:#FF8D80}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><main>
+<header><div class="logo"><span class="mark"><svg viewBox="0 0 24 24"><path d="M3 18l3-8h12l3 8z"/><path d="M8.5 10L10 6h4l1.5 4"/></svg></span><span>Andy’s <i>Gold</i></span></div><div class="hb"><button class="ibtn" id="theme" type="button" aria-label="Theme"></button><button class="pillb" id="lang" type="button">العربية</button></div></header>
+<div class="live" id="live"><b></b>Connecting</div>
+<nav><button data-t="p" class="on"><svg viewBox="0 0 24 24"><path d="M3 18l3-8h12l3 8z"/><path d="M8.5 10L10 6h4l1.5 4"/></svg><span>Prices</span></button><button data-t="u"><svg viewBox="0 0 24 24"><path d="M6 8h12l-3-3"/><path d="M18 16H6l3 3"/></svg><span>Currency</span></button><button data-t="c"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7M8.5 12h1.5M13.5 12H15M8.5 16h1.5M13.5 16H15"/></svg><span>Calculator</span></button><button data-t="a"><svg viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 015.5 4h13A1.5 1.5 0 0120 5.5v9a1.5 1.5 0 01-1.5 1.5H10l-5 4v-4h-.5A.5.5 0 014 15.5z"/></svg><span>Assistant</span></button><button data-t="ai"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 16l.7 1.8L21.5 18.5l-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"/></svg><span>AI Model</span></button></nav>
+
+<section id="p" class="pg on">
+<div class="hero"><div class="lbl">21K gold · per gram · buy</div><div class="n" id="h1"></div>
+<div class="s"><span id="h2"></span><span id="h3"></span></div><svg id="spark" viewBox="0 0 300 60" width="100%" height="60" style="margin-top:14px"></svg></div>
+<h3>By karat (EGP per gram)</h3><table id="pk"></table>
+<h3>Coins and bars (EGP per piece)</h3><table id="pb"></table>
+<h3>BTC gold bars, 24K (EGP per piece, estimated)</h3><table id="pbt"></table>
+<div class="note">Buy is what a shop charges you. Sell is what it pays you. Making charges are not included; the Calculator adds them. BTC prices are estimates: the 24K market price plus the usual BTC premium for each size, so confirm with your dealer. Keep the sealed pack and invoice to get the making charge back when you sell.</div>
+<details><summary>Match your local market</summary><div class="note">Prices follow the world gold price and move live. Local dealers add their own premium, so type your dealer’s 21K price once and the page will match it from then on.</div>
+<div class="two"><div><label>21K price (EGP/g)</label><input id="ip" type="number" step="0.01"></div><div><label>Buy–sell gap (EGP)</label><input id="isp" type="number" step="0.01"></div></div><button class="btn" id="upd">Match price</button></details>
+</section>
+
+<section id="u" class="pg">
+<div class="hero"><div class="lbl" id="ulb">1 US dollar in Egyptian pounds</div><div class="n" id="uh">…</div><div class="s"><span id="uc"></span></div><svg id="usp" viewBox="0 0 300 60" width="100%" height="60" style="margin-top:14px"></svg><div class="note" id="usrc"></div></div>
+<h3>Egyptian pound exchange rates (tap a currency)</h3><table id="ucur"></table>
+<h3>Converter</h3><div class="card"><div class="two"><div><label>Amount</label><input id="cam" type="number" value="100" step="any"></div><div><label>&nbsp;</label><button class="btn" id="cswap" type="button" style="margin:0;width:100%">Swap</button></div>
+<div><label>From</label><select id="cfr"></select></div><div><label>To</label><select id="cto"></select></div></div>
+<div class="tot"><span class="lbl" id="cres1"></span><b id="cres2"></b></div></div>
+<h3>What the dollar means for gold</h3><div id="ugold"></div>
+</section>
+<section id="c" class="pg">
+<div class="card"><div class="seg" id="sa"><button data-v="b" class="on">Buying</button><button data-v="s">Selling</button></div>
+<div class="seg" id="st" style="margin-top:10px"><button data-v="j" class="on">Jewelry</button><button data-v="b">Bar or coin</button><button data-v="k">BTC bar</button></div>
+<div class="two"><div><label>Karat</label><select id="ck"><option>24</option><option selected>21</option><option>18</option><option>14</option></select></div><div><label>Weight (grams)</label><input id="cw" type="number" value="10" step="0.01"></div></div></div>
+<div id="cr" style="margin-top:18px"></div>
+<details><summary>Fee settings</summary><div class="two">
+<div><label>Making charge (EGP/g)</label><input id="cm" type="number" value="200"></div><div><label>VAT on making (%)</label><input id="cv" type="number" value="14"></div>
+<div><label>Stamp fee (EGP)</label><input id="cs" type="number" value="10"></div><div><label>Extra deduction (EGP/g)</label><input id="cd" type="number" value="0"></div>
+<div><label>Bar premium (%)</label><input id="cp" type="number" value="1.5" step="0.1"></div><div><label>Bar buy-back discount (%)</label><input id="cb" type="number" value="1" step="0.1"></div><div><label>BTC buy-back spread (%)</label><input id="cx" type="number" value="1.7" step="0.1"></div><div><label>BTC pack sealed when selling?</label><select id="cq"><option value="y">Yes</option><option value="n">No</option></select></div></div>
+<div class="note">Typical values. Shops differ, so confirm before you buy. Making charges are normally not refunded when you sell jewelry.</div></details>
+</section>
+
+<section id="a" class="pg">
+<div class="top"><button class="pillb" id="nc" type="button">New chat</button></div>
+<div id="log"></div>
+<div class="chips" id="chips"></div>
+<form class="ask" id="form"><input id="q" placeholder="Ask about prices, timing, forecasts…" autocomplete="off" aria-label="Ask Andy"><button class="btn" type="submit">Ask</button></form>
+<details><summary>Market outlook</summary><div id="out"></div>
+<div class="note">Andy updates these from the latest news automatically. You can still change them:</div>
+<div class="two"><div><label>World gold</label><select id="f1"><option value="1">Rising</option><option value="0" selected>Flat</option><option value="-1">Falling</option></select></div>
+<div><label>Egyptian pound</label><select id="f2"><option value="1">Weakening</option><option value="0" selected>Stable</option><option value="-1">Strengthening</option></select></div>
+<div><label>US rates</label><select id="f3"><option value="1">Cutting</option><option value="0">Hold</option><option value="-1" selected>Hike expected</option></select></div>
+<div><label>World tension</label><select id="f4"><option value="1">High</option><option value="0" selected>Normal</option><option value="-1">Low</option></select></div></div><div id="news"></div></details>
+</section>
+<section id="ai" class="pg">
+<div class="note" id="aist" style="margin-top:0"></div>
+<div id="aiout" class="note">The AI model is getting ready. It runs by itself and refreshes automatically.</div>
+</section>
+<footer>Local prices are read automatically from the Souq El Dahab channel (t.me/SOUQELDAHB24). Andy’s Gold is an informational tool, not licensed financial advice. Nobody can predict gold exactly. Prices are estimates, not official dealer quotes.</footer>
+</main>
+<script>
+const LANG=(()=>{try{return localStorage.getItem("andy_lang")==="ar"?"ar":"en"}catch(e){return"en"}})(),LOC=LANG==="ar"?"ar-EG-u-nu-latn":[];
+const SNAP="2026-10-27",$=id=>document.getElementById(id),f2=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const BASE=[["2026-09-26",6268.77],["2026-09-27",6253.49],["2026-09-28",6057.27],["2026-09-29",6078.59],["2026-09-30",6064.15],["2026-10-01",6133.89],["2026-10-02",6080.52],["2026-10-03",6069.05],["2026-10-04",6080.24],["2026-10-23",6275],["2026-10-26",6335],["2026-10-27",6350]];
+let st={p:6350,sp:45,d:SNAP,hist:{},cal:null},raw=null,src="",cv={a:"b",t:"j"};
+try{const s=JSON.parse(localStorage.getItem('andy_gold')||'null');if(s&&s.d>=SNAP)st=s}catch(e){}
+const save=()=>{try{localStorage.setItem('andy_gold',JSON.stringify(st))}catch(e){}};
+const P=k=>st.p*k/21,SL=k=>P(k)-st.sp*k/21;
+const series=()=>{const m=new Map(BASE);for(const d in st.hist)m.set(d,st.hist[d]);m.set(st.d,st.p);return[...m].sort((a,b)=>a[0]<b[0]?-1:1)};
+const sma=(a,n)=>{const s=a.slice(-n);return s.reduce((x,y)=>x+y,0)/s.length};
+const sd=a=>{const m=sma(a,a.length);return Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/a.length)};
+const ema=(a,n)=>{const k=2/(n+1);let e=a[0];for(const v of a)e=v*k+e*(1-k);return e};
+function rsi(a,n){const d=a.slice(-n-1);let u=0,l=0;for(let i=1;i<d.length;i++){const c=d[i]-d[i-1];c>0?u+=c:l-=c}return l===0?100:100-100/(1+u/l)}
+let sgn=0;const sparkSvg=(pts,w=300,h=60)=>{const mn=Math.min(...pts),mx=Math.max(...pts),X=i=>i/(pts.length-1)*w,Y=v=>h-8-(v-mn)/(mx-mn||1)*(h-18),id="sg"+(++sgn),pp=pts.map((v,i)=>X(i).toFixed(1)+","+Y(v).toFixed(1)),l=pts.length-1;
+return`<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2BC62" stop-opacity=".38"/><stop offset="1" stop-color="#E2BC62" stop-opacity="0"/></linearGradient></defs><polygon fill="url(#${id})" points="0,${h} ${pp.join(" ")} ${w},${h}"/><polyline fill="none" stroke="#E2BC62" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" points="${pp.join(" ")}"/><circle cx="${X(l)}" cy="${Y(pts[l])}" r="4" fill="#E2BC62" stroke="#0A1828" stroke-width="2"/>`};
+let lastP=null;function flash(el,v){if(lastP!==null&&v!==lastP){el.classList.remove("fl-up","fl-dn");void el.offsetWidth;el.classList.add(v>lastP?"fl-up":"fl-dn")}lastP=v}
+function prices(){
+const S=series(),n=S.length,ch=st.p-S[n-2][1];
+$('h1').textContent=f2(P(21));flash($('h1'),P(21));$('h2').innerHTML=`<span class="lbl">Sell</span> <b>${f2(SL(21))}</b>`;
+$('h3').innerHTML=`<span class="${ch>=0?"up":"dn"}">${ch>=0?"▲":"▼"} ${f2(Math.abs(ch))} (${(Math.abs(ch)/st.p*100).toFixed(2)}%)</span> <span class="lbl">vs previous reading</span>`;
+const pts=S.slice(-14).map(x=>x[1]),mn=Math.min(...pts),mx=Math.max(...pts);
+$('spark').innerHTML=sparkSvg(pts);
+const row=(t,b,s)=>`<tr><td>${t}</td><td>${f2(b)}</td><td>${f2(s)}</td></tr>`,hd="<tr><th></th><th>Buy</th><th>Sell</th></tr>";
+$('pk').innerHTML=hd+[24,21,18,14].map(k=>row(k+"K"+(k===21?" (most traded)":""),P(k),SL(k))).join("");
+$('pb').innerHTML=hd+row("Gold pound (8g, 21K)",P(21)*8,SL(21)*8)+[[1,"1g"],[5,"5g"],[10,"10g"],[20,"20g"],[31.1035,"1 oz"],[100,"100g"]].map(([w,t])=>row("24K bar "+t,P(24)*w*1.015,P(24)*w*.99)).join("");
+$('pbt').innerHTML=hd+[[1,"1g"],[2.5,"2.5g"],[5,"5g"],[10,"10g"],[20,"20g"],[31.1035,"1 oz"],[50,"50g"],[100,"100g"]].map(([w,t])=>row("BTC "+t,btcBuy(w),btcSell(w))).join("")}
+const bp=w=>w<=1?3:w<=2.5?2.2:w<=5?1.8:w<=10?1.5:w<=20?1.4:w<=31.2?1.3:w<=50?1.2:1.1;
+const btcBuy=w=>P(24)*w*(1+bp(w)/100),btcSell=w=>btcBuy(w)*(1-(+$('cx').value||1.7)/100);
+function quote(a,t,k,w){const g=id=>+$(id).value||0,mk=g('cm'),vt=g('cv'),sf=g('cs'),dd=g('cd'),pr=g('cp'),bb=g('cb'),R=[];let tot;
+if(t==="k"){const m=P(24)*w,pm=btcBuy(w)-m;R.push([`Gold, ${f2(w)} g × ${f2(P(24))} (24K market)`,m]);
+if(a==="b"){R.push([`BTC premium and making, ${bp(w)}%`,pm]);tot=m+pm}
+else if($('cq').value==="y"){const sp=btcBuy(w)*(g('cx')||1.7)/100;R.push(["BTC premium returned (sealed pack)",pm],[`Dealer spread ${g('cx')||1.7}%`,-sp]);tot=m+pm-sp}
+else{const d=m*bb/100;R.push(["Premium not returned (pack opened)",0],[`Buy-back discount ${bb}%`,-d]);tot=m-d}return{R,tot,ref:m}}
+if(t==="j"){const u=a==="b"?P(k):SL(k);tot=u*w;R.push([`Gold, ${f2(w)} g × ${f2(u)}`,tot]);
+if(a==="b"){const m=mk*w,v=m*vt/100;R.push([`Making charge, ${mk} EGP/g`,m],[`VAT ${vt}% on making`,v],["Stamp fee",sf]);tot+=m+v+sf}
+else{if(dd){R.push([`Shop deduction, ${dd} EGP/g`,-dd*w]);tot-=dd*w}R.push(["Making charge refunded",0])}}
+else{tot=P(k)*w;R.push([`Gold, ${f2(w)} g × ${f2(P(k))}`,tot]);if(a==="b"){const p=tot*pr/100;R.push([`Bar premium ${pr}%`,p],["VAT on bullion",0]);tot+=p}else{const p=tot*bb/100;R.push([`Buy-back discount ${bb}%`,-p]);tot-=p}}
+return{R,tot,ref:P(k)*w}}
+function calc(){const k=cv.t==="k"?24:+$('ck').value,w=+$('cw').value||0,q=quote(cv.a,cv.t,k,w);$('ck').disabled=cv.t==="k";if(cv.t==="k")$('ck').value="24";
+$('cr').innerHTML=q.R.map(r=>`<div class="line"><span>${r[0]}</span><span class="${r[1]<0?"dn":""}">${f2(r[1])}</span></div>`).join("")+`<div class="tot"><span class="lbl">${cv.a==="b"?"You pay":"You receive"} (EGP)</span><b>${f2(q.tot)}</b></div><div class="note">${f2(q.tot/(w||1))} EGP per gram, ${((q.tot/q.ref-1)*100).toFixed(1)}% against the market price.</div>`}
+function analyze(){
+const S=series(),a=S.map(x=>x[1]),n=a.length,last=a[n-1],t0=new Date(S[0][0]),t=S.map(x=>(new Date(x[0])-t0)/864e5),T=t[n-1],L=[];
+const add=(nm,v,note)=>L.push({nm,v:Math.max(-1,Math.min(1,v)),note});
+const idx=t.map((v,i)=>i).filter(i=>T-t[i]<=35),xs=idx.map(i=>t[i]),ys=idx.map(i=>a[i]),mx=sma(xs,xs.length),my=sma(ys,ys.length);
+const sl=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0)/(xs.reduce((s,x)=>s+(x-mx)**2,0)||1),res=sd(ys.map((y,i)=>y-(my+sl*(xs[i]-mx))));
+add("5-week trend",sl/last*150,sl>0?"the 5-week trend is rising":"the 5-week trend is falling");
+const s3=sma(a,3),s6=sma(a,6);add("average cross",(s3-s6)/s6*80,s3>s6?"recent prices are above the usual level":"recent prices are below the usual level");
+const mc=ema(a,3)-ema(a,6);add("momentum",mc/last*80,mc>0?"momentum favors buyers":"momentum favors sellers");
+const r=rsi(a,5);add("RSI",(50-r)/30,r>70?"the price rose very fast (RSI "+r.toFixed(0)+"), so a pullback is possible":r<30?"the price fell very fast (RSI "+r.toFixed(0)+"), so a bounce is likely":"the price is not stretched either way (RSI "+r.toFixed(0)+")");
+const mo=last/a[Math.max(0,n-5)]-1;add("recent change",mo*40,mo>0?"it is up over the last few readings":"it is down over the last few readings");
+const dd=last/Math.max(7500,...a)-1;add("peak distance",-dd*1.2,"it sits "+(Math.abs(dd)*100).toFixed(0)+"% below the March peak, which leaves long-term room to recover");
+const fu=+$('f1').value*.35+ +$('f2').value*.3+ +$('f3').value*.2+ +$('f4').value*.15;add("news",fu,"the news assumptions lean "+(fu>.1?"bullish":fu<-.1?"bearish":"neutral"));
+const tech=L.slice(0,-1).reduce((x,y)=>x+y.v,0)/(L.length-1),score=Math.max(-1,Math.min(1,tech*.6+fu*.4));
+const hs=[1,7,30,90].map(h=>{let dp=0,ph=1;for(let i=0;i<h;i++){ph*=.93;dp+=ph}const sg=Math.max(-.006*last,Math.min(.006*last,sl)),v=(last+sg*dp)*(1+score*.012*Math.sqrt(h)),b=Math.max(res,last*.008)*Math.sqrt(h);return{h,v,lo:v-b,hi:v+b}});
+const conf=Math.min(80,Math.round(25+n*2.5+Math.abs(score)*20));
+return{a,last,L,score,hs,conf,cw:conf<45?"low":conf<65?"medium":"high",vol:sd(a.slice(1).map((v,i)=>v/a[i]-1))*100}}
+function outlook(){const A=analyze(),bv=Math.round(50+A.score*50);
+$('out').innerHTML=`<table style="margin-top:12px"><tr><th>When</th><th>Expected</th><th>Range</th></tr>${A.hs.map(h=>`<tr><td>${h.h===1?"Tomorrow":h.h+" days"}</td><td class="${h.v>A.last?"up":"dn"}">${f2(h.v)}</td><td>${f2(h.lo)} to ${f2(h.hi)}</td></tr>`).join("")}</table>
+<div style="margin-top:14px" class="lbl">Good time to buy: ${bv}%</div><div class="mt"><i style="width:${bv}%;background:var(--up)"></i></div><div class="lbl">Good time to sell: ${100-bv}%</div><div class="mt"><i style="width:${100-bv}%;background:var(--dn)"></i></div>`}
+// ---- assistant ----
+const E=[[/making|مصنعية|مصنعيه/,"The making charge (مصنعية) is the shop’s fee for crafting jewelry, usually 100–300 EGP per gram. You pay it, plus 14% VAT on it, when you buy, and you normally don’t get it back when you sell. That is why bars and coins are better than jewelry for saving."],
+[/\bvat\b|tax|ضريب|invoice|فاتورة/,"VAT (14%) is charged on the making charge of jewelry, not on the gold itself. Always ask for an invoice (فاتورة) that shows weight, karat and stamp. You need it to prove what you bought and to resell easily."],
+[/purity|what is (a )?karat|what are karats|karats mean|عيار/,"Karat shows purity: 24K is 99.9% gold, 21K is 87.5%, 18K is 75%, 14K is 58.3%. 21K is the most traded in Egypt. Its price is 21/24 of the 24K price."],
+[/spread|gap|difference between buy|فرق|الفرق/,"The spread is the gap between the shop’s buy price and its sell price: about %S% EGP per gram for 21K now. It is the dealer’s margin, so selling right after buying always loses that gap."],
+[/btc|بي تي سي|brand|premium/,"BTC is a popular Egyptian maker of sealed gold bars and coins. A BTC bar costs the gold price plus a premium (about 1.1% on a 100 g bar up to about 3% on a 1 g bar). When you sell it back you lose roughly 1.7%. Keep the sealed pack and invoice: they are needed to recover the making charge."],
+[/rsi|macd|indicator|technical|moving average|مؤشر|مؤشرات/,"RSI shows whether a price rose or fell too fast (above 70 is stretched up, below 30 is stretched down). MACD compares a fast and a slow average to show momentum. Andy combines these with a trend line, an average cross and your news assumptions into one score."],
+[/pound|جنيه ذهب|جنيه الذهب/,"The gold pound is a coin of 8 grams of 21K gold. Its price is 8 × the 21K gram price, plus a premium if it comes from a brand."],
+[/ounce|\boz\b|أونصة|اونصة/,"An ounce is 31.1035 grams. World gold is quoted in US dollars per ounce. Egypt’s price is that, times the dollar rate, plus the local market premium."],
+[/weekend|friday|saturday|sunday|monday|best day|which day|الجمعة|السبت|الأحد|الاثنين|اجازة|أفضل يوم/,"World gold trading pauses over the weekend, so Egyptian prices usually move little then and can jump when markets reopen. No weekday is reliably cheaper, so buying in parts matters more than picking a day."],
+[/inflation|hedge|bank|certificate|deposit|dollar vs|usd vs|compare.*(dollar|bank)|تضخم|شهادات|وديعة|ودائع|بنك/,"Gold protects against a weaker pound and inflation but pays no interest and can fall for months. Bank certificates pay fixed interest but lose value if the pound weakens. Many people hold some of each."],
+[/why|reason|driver|fed|move|going down|going up|ليه|لماذا|السبب|يتحرك|بيتحرك/,"Gold in Egypt moves with three things: the world gold price in dollars, the dollar-to-pound rate (a weaker pound lifts local prices), and local demand. Higher US interest rates usually push world gold down. Fear and inflation push it up."]];
+let hist=[],ctx={k:21,i:null,topic:null,w:null,a:"b",t:"j",hz:null,pend:null,why:[]};
+try{hist=JSON.parse(localStorage.getItem('andy_chat')||'[]');const c=JSON.parse(localStorage.getItem('andy_ctx')||'null');if(c)ctx=Object.assign(ctx,c)}catch(e){}
+const keep=()=>{try{localStorage.setItem('andy_chat',JSON.stringify(hist.slice(-60)));localStorage.setItem('andy_ctx',JSON.stringify(ctx))}catch(e){}};
+const bub=(r,h)=>{const d=document.createElement('div');d.className='m '+r;r==='u'?d.textContent=h:d.innerHTML=LANG==='ar'?trChat(h):h;$('log').appendChild(d);return d};
+const say=h=>{hist.push({r:'b',h});bub('b',h).scrollIntoView({block:'end'});keep()};
+const me=t=>{hist.push({r:'u',h:t});bub('u',t);keep()};
+const kp=k=>`<b>${k}K</b>: buy ${f2(P(k))}, sell ${f2(SL(k))} EGP/g`;
+function parse(q){const t=q.toLowerCase().replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[؟،?!,]/g," ").replace(/\s+/g," ").trim();
+const km=t.match(/\b(24|21|18|14)\s*(k|kt|karat|carat)\b/)||t.match(/(?:karat|carat|عيار)\s*(24|21|18|14)/)||t.match(/\b(24|21|18|14)\b(?!\s*(g\b|gm|gram|day|hour|month|week))/),wm=t.match(/(\d+(?:\.\d+)?)\s*(?:(?:g|gm|gms|gram|grams)\b|جرامات|جرام|جم|غرام)/);
+return{t,k:km?+km[1]:null,w:wm?+wm[1]:null,num:(t.match(/^\d+(?:\.\d+)?$/)||[])[0],
+hz:/tomorrow|next day|1 day|بكرة|بكره|غدا/.test(t)?0:/week|7 days|اسبوع|أسبوع/.test(t)?1:/(3|three) months?|90|quarter|3 شهور|3 أشهر|ثلاثة أشهر|ثلاث شهور/.test(t)?3:/month|30 days|شهر/.test(t)?2:null,
+sell:/\b(sell|selling|sold)\b|أبيع|بيع/.test(t),buy:/\b(buy|buying|purchase|invest|investing)\b|أشتري|شراء|اشتري|اشترى|استثمر|أستثمر/.test(t),hold:/\b(hold|holding)\b|احتفظ|أحتفظ/.test(t),
+btc:/btc|بي تي سي/.test(t),bar:/\bbars?\b|coin|سبيك|سبائك|عملة ذهب/.test(t),jew:/jewel|ring|chain|bracelet|necklace|accessor|earring|حلي|مشغولات|خاتم|دبلة|سلسلة|اسورة|إسورة/.test(t)}}
+function reply(q){const p=parse(q),t=p.t,A=analyze(),h30=A.hs[2],ch=(h30.v/A.last-1)*100,bull=A.score>.2,bear=A.score<-.2,a6=sma(A.a,6);
+if(p.k)ctx.k=p.k;
+const fu=/^(and|what about|how about|what if|then|also|ok and|okay and|so)\b|^(و|ماذا عن|طب|طيب)/.test(t)||t.split(" ").length<=3;
+const reasons=()=>{const o=A.L.filter(l=>l.v*A.score>0).sort((a,b)=>Math.abs(b.v)-Math.abs(a.v)),c=A.L.filter(l=>l.v*A.score<0).sort((a,b)=>Math.abs(b.v)-Math.abs(a.v));ctx.why=o.slice(0,3).map(l=>l.note).concat(c.length?["but on the other side, "+c[0].note]:[]);return ctx.why.length?ctx.why.map(w=>"• "+w).join("\n"):"• the signals are mixed"};
+const nxt=s=>"\n"+s;
+const timing=/best time|when (is|should|can|do|to)|good time|right time|wait|should i|أفضل وقت|احسن وقت|أحسن وقت|امتى|متى|انتظر|استنى|هل أ|هل ا/.test(t),own=/\b(i have|i own|i got|my)\b|عندي|عندى|معي|معايا|أملك|املك/.test(t)&&(p.w||p.btc||p.bar||p.jew);
+if(own){ctx.hold={w:p.w||ctx.w||(ctx.hold&&ctx.hold.w)||null,t:p.btc?"k":p.bar?"b":p.jew?"j":(ctx.hold&&ctx.hold.t)||ctx.t,k:p.btc?24:(p.k||ctx.k)};ctx.t=ctx.hold.t;ctx.k=ctx.hold.k;if(ctx.hold.w)ctx.w=ctx.hold.w}
+const hl=()=>{const h=ctx.hold;if(!h||!h.w||ctx.i!=="s")return"";const q=quote("s",h.t,h.k,h.w),now=q.tot,tg=now*h30.v/A.last;return`\nYour ${f2(h.w)} g ${h.k}K ${h.t==="k"?"BTC bar":h.t==="b"?"bar":"jewelry"} would bring about <b>${f2(now)} EGP</b> if sold today. At the 30-day estimate it would be about <b>${f2(tg)} EGP</b> (${tg>=now?"+":""}${f2(tg-now)}).`+(h.t==="k"?"\nKeep the sealed pack and invoice until you sell, or you lose the making charge.":"")};
+const calc=()=>{ctx.topic="calc";if(p.btc)ctx.t="k";else if(p.bar)ctx.t="b";else if(p.jew)ctx.t="j";
+if(p.sell&&!p.buy)ctx.a="s";else if(p.buy&&!p.sell)ctx.a="b";if(p.w)ctx.w=p.w;
+const kk=ctx.t==="k"?24:ctx.k;if(!ctx.w){ctx.pend="w";return`How many grams of ${kk}K ${ctx.t==="k"?"BTC bar":ctx.t==="b"?"bar/coin":"jewelry"} are you ${ctx.a==="b"?"buying":"selling"}?`}
+const qt=quote(ctx.a,ctx.t,kk,ctx.w);
+return`${ctx.a==="b"?"Buying":"Selling"} <b>${f2(ctx.w)} g of ${kk}K ${ctx.t==="k"?"BTC bar":ctx.t==="b"?"bar/coin":"jewelry"}</b>:\n`+qt.R.filter(r=>r[1]).map(r=>`${r[0]}: ${f2(r[1])}`).join("\n")+`\n<b>${ctx.a==="b"?"You pay":"You receive"}: ${f2(qt.tot)} EGP</b> (${f2(qt.tot/ctx.w)} per gram, ${((qt.tot/qt.ref-1)*100).toFixed(1)}% vs market).`+nxt("Say “and 18K”, “what about 20 grams”, or “switch to selling” to compare.")};
+const fc=()=>{ctx.topic="forecast";if(p.hz!==null)ctx.hz=p.hz;const dir=bull?"rise":bear?"fall":ch>1?"drift slightly higher":ch<-1?"drift slightly lower":"move sideways",x=h=>`${h.h===1?"Tomorrow":"In "+h.h+" days"}: <b>${f2(h.v)}</b> (range ${f2(h.lo)} to ${f2(h.hi)})`;
+const act=ctx.i==="s"?(bull?"\nIf you’re selling, that argues for waiting.":bear?"\nIf you’re selling, that argues for selling soon.":""):ctx.i==="b"?(bull?"\nIf you’re buying, that argues for buying sooner.":bear?"\nIf you’re buying, that argues for waiting for a dip.":""):"";
+return`Over the next month Andy expects 21K to <b>${dir}</b> (${ch>=0?"+":""}${ch.toFixed(1)}%, now ${f2(A.last)}).\n`+(ctx.hz===null?A.hs.map(x).join("\n"):x(A.hs[ctx.hz]))+`\nConfidence: <b>${A.cw}</b> (short history).\nWhy:\n${reasons()}`+act+aiTxt()+nxt("Ask “should I sell or buy?” for a plan.")};
+const adv=()=>{ctx.topic="advice";if(!ctx.i){ctx.pend="i";return"Are you looking to buy, sell, or hold?"}const it=ctx.i;
+const v=it==="s"?(bull?"<b>Wait.</b> Prices look set to rise.":bear?"<b>Sell now.</b> Prices look set to fall.":"<b>Toss-up.</b> Sell only if you need the cash."):it==="b"?(bull?"<b>Good time to buy.</b> Prices look set to rise.":bear?"<b>Wait for a dip.</b> Prices look set to fall.":"<b>Buy in small parts.</b> The trend is unclear."):"<b>Keep holding.</b> Don’t trade on short-term noise.";
+const plan=it==="s"?(bull?`Sell 0–25% now, and the rest if the price passes ${f2(h30.v)} or falls below ${f2(a6)}.`:bear?"Sell 70–100% now.":`Sell a third now, a third in a week, a third in two weeks. A good target is about ${f2(h30.v)} for 21K; don’t wait past a drop below ${f2(a6)}.`):it==="b"?(bull?"Buy half now and the rest within two weeks.":bear?`Buy at most 25% now and wait for about ${f2(h30.lo)} for the rest.`:"Split your money into 4 weekly purchases."):"Review monthly. Keep gold at about 10–20% of your savings and keep 6 months of cash separate.";
+return`${v}\n21K is ${f2(P(21))}. Expected in 30 days: ${f2(h30.v)} (${ch>=0?"+":""}${ch.toFixed(1)}%). Confidence: ${A.cw}.\nWhy:\n${reasons()}\n<b>Plan:</b> ${plan}\nI’d change my mind if 21K moves ${bull?"below":"above"} ${f2(a6)}.`+hl()+aiTxt()+nxt("Ask “why?”, “forecast next week”, or “sell 20 grams of 21K” to go further.")};
+const priceA=()=>{ctx.topic="price";if(p.btc||p.bar||/pound|جنيه|ounce|\boz\b/.test(t)){const w=p.w;
+if(p.btc||(!/pound|جنيه/.test(t)&&p.bar)){const ws=w?[w]:[1,5,10,20,31.1035,100];return"<b>BTC bars (24K, estimated)</b>\n"+ws.map(x=>`${f2(x)} g: buy ${f2(btcBuy(x))}, sell ${f2(btcSell(x))}`).join("\n")+nxt("Estimates: market price plus the usual BTC premium. Confirm with your dealer.")}
+return`<b>Gold pound (8g, 21K)</b>: buy ${f2(P(21)*8)}, sell ${f2(SL(21)*8)}\n<b>24K bar 10g</b>: buy ${f2(P(24)*10*1.015)}\n<b>Ounce</b>: ${f2(P(24)*31.1035)} EGP`}
+return(p.k?kp(p.k)+`\nGap between buy and sell: ${f2(P(p.k)-SL(p.k))} EGP.`:[24,21,18,14].map(kp).join("\n"))+nxt("Ask “and BTC bars?” or “should I sell now?”.")};
+// slot filling
+if(ctx.pend==="w"){const w=p.w||(p.num?+p.num:null);ctx.pend=null;if(w){ctx.w=w;return calc()}}
+if(ctx.pend==="i"){ctx.pend=null;if(p.sell||p.buy||p.hold){ctx.i=p.sell&&!p.buy?"s":p.buy&&!p.sell?"b":"h";return adv()}}
+if(/^(hi|hello|hey|start|help|hola)\b|^(مرحبا|اهلا|أهلا|السلام|هاي|ازيك|مساعدة)/.test(t))return"Hi, I’m Andy. I answer from today’s live gold data and I remember our conversation until you tap New chat. Ask about prices, when to buy or sell, forecasts, fees, BTC bars, zakat, or say “give me tips”.";
+if(/^(thanks|thank you|thx|great|perfect|cool|nice|شكرا|شكراً|ممتاز|تمام)/.test(t))return"You’re welcome. Want a tip, a forecast for next week, or a cost calculation?";
+if(/dollar|euro|sterling|riyal|\busd\b|\beur\b|\bgbp\b|\baud\b|\bsar\b|\bqar\b|currenc|exchange rate|€|£|دولار|يورو|استرليني|إسترليني|ريال|عملة|عملات|سعر الصرف/.test(t)&&!/gold|karat|carat|\bbars?\b|btc|ounce|jewel|ring|chain|\bg\b|gram|ذهب|عيار|سبيك|سبائك|جرام|مشغول/.test(t))return curA(t);
+if(/^(why|how come|explain|why is that|why so|what do you mean|لماذا|ليه|ليش|كيف|اشرح|وضح)$/.test(t))return ctx.why.length?"Here’s what drove my last answer:\n"+ctx.why.map(w=>"• "+w).join("\n")+"\nThese come from the price history (trend, averages, RSI, momentum) and your news assumptions in Market outlook.":"I haven’t given a recommendation yet. Ask “should I sell now?” or “will gold rise?” first.";
+if(own&&timing&&!p.buy){ctx.i="s";return adv()}
+if(own&&!timing&&!p.buy&&ctx.hold.w){ctx.a="s";ctx.i="s";return calc()+nxt("Want to know the best time to sell it? Just ask.")}
+if(/tip|idea|strategy|what should i know|recommend|suggest|how (do i|to) start|نصيحة|نصائح|فكرة|أفكار|افكار|استراتيجية|اقتراح/.test(t)&&!/should i (sell|buy)/.test(t)){ctx.topic="tips";
+const L=[`Today’s signal is ${bull?"rising":bear?"falling":"mixed"}: ${bull?"don’t rush to sell, and buy in parts":bear?"avoid large purchases and wait for a dip":"split any buying or selling into parts"}.`,
+"Buy in 3–4 parts over a few weeks. You won’t catch the bottom, but you also avoid buying at the top.",
+"For saving, choose 24K bars or coins: about 1.5% over the gold price, instead of 200+ EGP/g making charge on jewelry.",
+"With BTC bars keep the sealed pack and invoice, or you lose the making charge on resale.",
+"Compare making charges at 2–3 shops. They are negotiable.",
+"Don’t chase a jump of more than 2% in one day. Prices often settle back.",
+"Decide your exit before you buy, for example sell a third if the price rises 10%.",
+"Keep 6 months of cash separate. Gold is for money you won’t need soon.",
+"Zakat applies once you hold 85 g of 24K (or the equivalent) for a lunar year."];
+return"<b>Tips for you</b>\n"+L.slice(0,6).map(x=>"• "+x).join("\n")+nxt("Ask about zakat, storing gold safely, or spotting fake gold.")}
+if(/zakat|زكاة|زكاه/.test(t)){const w=p.w,k=ctx.k;if(!w)return"Zakat on gold is 2.5% once you hold at least 85 g of 24K (or the equivalent in lower karats) for a full lunar year. Tell me how much, for example “zakat on 120 g of 21K”.";
+const eq=w*k/24;return eq>=85?`${f2(w)} g of ${k}K equals ${f2(eq)} g of 24K, which is above the 85 g threshold. Zakat is 2.5%: <b>${f2(w*.025)} g of gold</b>, worth about <b>${f2(w*.025*SL(k))} EGP</b> at today’s sell price.`+nxt("Confirm details with a religious authority."):`${f2(w)} g of ${k}K equals ${f2(eq)} g of 24K, below the 85 g threshold, so zakat isn’t due on this gold alone (check your other savings too).`}
+if(/fake|real gold|authentic|counterfeit|مغشوش|genuine|مزيف|تقليد|اصلي|أصلي|غش/.test(t))return"To avoid fake gold: buy from a licensed shop, check the stamp (دمغة) and karat mark, ask for an invoice, and for large pieces weigh them on the shop’s certified scale. A jeweler can run an acid or X-ray test. A magnet pulling the piece is a bad sign. Sealed bars from known makers like BTC are the easiest to trust.";
+if(/\bstor|locker|insur|steal|home safe|خزنة|تخزين|احفظ|أحفظ|بأمان|سرقة|تأمين/.test(t))return"For storage, a bank safe-deposit locker is the most secure, a hidden home safe is cheaper but riskier. Keep invoices and pack separate from the gold, don’t tell people what you own, and consider home insurance for larger amounts.";
+if(/(how much|what|كام|ايه).*(get|worth|receive|bring|pay|cost|هاخد|هستلم|يجيب|قيمة|هدفع)/.test(t)&&ctx.w&&!p.k){if(/get|receive|bring|هاخد|هستلم|يجيب/.test(t))ctx.a="s";return calc()}
+if(p.num&&ctx.topic==="calc"){ctx.w=+p.num;return calc()}
+if((!timing&&p.w&&(p.buy||p.sell||/cost|pay|get|worth|how much|price|calc|convert|كام|بكام|سعر|أسعار|اسعار|تكلفة|هدفع|هاخد|قيمة|احسب|حساب/.test(t)))||(ctx.topic==="calc"&&(p.w||p.k||p.btc||p.bar||p.jew||p.sell||p.buy||/switch|instead|حول|حوّل|بدل/.test(t))&&fu&&!/ or | vs |versus|better|أفضل|احسن|أحسن|ولا| أم |مقابل/.test(t))||/calculat|احسب|حساب/.test(t))return calc();
+if(/predict|forecast|will |going to|tomorrow|week|month|future|expect|trend|higher|lower|go up|go down|next|توقع|مستقبل|بكرة|بكره|غدا|اسبوع|أسبوع|شهر|هيرتفع|هينزل|هيزيد|هترتفع|هتنزل|سيرتفع|سينخفض|يرتفع|ينخفض|ترتفع|تنخفض|اتجاه|القادم/.test(t)&&!/should i/.test(t)){return fc()}
+if(/sell|buy|wait|hold|best time|good time|invest|should|اشتري|ابيع|أبيع|أشتري|بيع|شراء|استنى|انتظر|احتفظ|وقت|أفضل|احسن|أحسن|ينفع|اتصرف|اشتر/.test(t)&&!/(what is|how|why)/.test(t)){if(p.sell&&!p.buy)ctx.i="s";else if(p.buy&&!p.sell)ctx.i="b";else if(p.hold)ctx.i="h";return adv()}
+if(p.btc&&p.w&&!p.buy&&!p.sell)return priceA();
+if(/\bnews|headline|what happened|what.s happening|أخبار|اخبار/.test(t)&&!/price of/.test(t))return newsA();
+for(const[re,txt]of E)if(re.test(t)&&!/should|will |predict|forecast/.test(t)&&!(/price|how much|cost|بكام|سعر|أسعار|اسعار/.test(t)&&!/why|reason/.test(t)))return txt.replace("%S%",f2(st.sp));
+if(/risk|safe|reliable|accura|sure|confidence|trust|مخاطر|خطر|دقة|دقيق|ثقة|موثوق|آمن/.test(t))return`Price swings are ${A.vol<.8?"low":A.vol<1.8?"moderate":"high"} right now and my confidence is <b>${A.cw}</b> (${A.conf}%). Andy only has about ${A.a.length} real readings, and no model can predict gold exactly. Use the plan as a guide, buy in parts, and never invest money you may need soon.`;
+if(/percent|portfolio|savings|how much gold|diversif|allocation|نسبة|محفظة|مدخرات|توزيع/.test(t))return"A common guideline is 10–20% of your savings in gold, kept separate from 6 months of emergency cash. Buy in parts rather than all at once, and prefer bars or coins over jewelry for saving.";
+if(/(jewel|bar|coin|accessor|karat|carat|18|21|24|مشغولات|سبائك|سبيكة)/.test(t)&&/better|best|or |vs|versus|which|compare|أفضل|احسن|أحسن|ولا| أم |مقابل|مقارنة/.test(t))return"For saving: <b>24K bars or coins</b> have the lowest extra cost (about 1.5% to buy, 1% to sell back). BTC bars add a bit more for small sizes but are easy to resell. Jewelry adds roughly 200 EGP/g making charge plus 14% VAT on it, mostly lost on resale, so buy it to wear, not to invest. Among karats, 21K is the easiest to trade and 24K has the lowest premium.";
+if(/price|rate|how much|سعر|أسعار|اسعار|بكام|today|gram|current|what.s|btc|bar|pound|النهاردة|الان|الآن|اليوم|جرام/.test(t)||p.k)return priceA();
+if(fu&&ctx.topic==="price")return priceA();
+if(fu&&ctx.topic==="forecast")return fc();
+if(fu&&ctx.topic==="advice"){if(p.sell)ctx.i="s";else if(p.buy)ctx.i="b";else if(p.hold)ctx.i="h";return adv()}
+return"I want to get this right, but I’m not sure what you mean. I can help with prices (any karat, BTC bars, the pound), whether to buy or sell now, forecasts, cost calculations, fees, zakat, storing gold and spotting fake gold. Which one is it?"}
+const SG={price:["And 18K?","BTC bars","Should I sell now?"],calc:["What about 20 grams?","Switch to selling","BTC bar instead"],advice:["Why?","Forecast next month","Give me tips"],forecast:["Why?","Should I sell now?","Next week?"],tips:["Zakat on 100 g of 21K","Spot fake gold","Store gold safely"],null:["Should I sell now?","Give me tips","Price of 18K","BTC bar prices","Buy 10 grams of 21K"]};
+const chips=()=>{$('chips').innerHTML=(SG[ctx.topic]||SG.null).map(c=>`<button type="button">${c}</button>`).join("");$('chips').querySelectorAll('button').forEach(b=>b.onclick=()=>ask(b.textContent))};
+function ask(q){me(q);const d=document.createElement('div');d.className='m b';d.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';$('log').appendChild(d);d.scrollIntoView({block:'end'});setTimeout(()=>{d.remove();say(reply(q));chips()},520)}
+function boot(){$('log').innerHTML="";if(!hist.length){hist=[];say("Hi, I’m Andy. Ask me anything about gold in Egypt: prices, BTC bars, when to buy or sell, forecasts, fees, zakat. I remember our conversation until you tap New chat.")}else hist.forEach(m=>bub(m.r,m.h));chips()}
+function newChat(){hist=[];ctx={k:21,i:null,topic:null,w:null,a:"b",t:"j",hz:null,pend:null,why:[]};keep();boot()}
+// ---- currency ----
+let USD=null,WORLD=null,CURSEL="USD";
+const CN={EGP:["Egyptian Pound","🇪🇬"],USD:["US Dollar","🇺🇸"],EUR:["Euro","🇪🇺"],GBP:["Pound Sterling","🇬🇧"],AUD:["Australian Dollar","🇦🇺"],SAR:["Saudi Riyal","🇸🇦"],QAR:["Qatari Riyal","🇶🇦"]};
+const curs=()=>USD?(USD.cur||{USD:{rate:USD.rate,prev:USD.prev,series:USD.series,at:USD.at,src:USD.source}}):{};
+const egp=c=>c==="EGP"?1:(curs()[c]?curs()[c].rate:null);
+async function usdLoad(){try{const r=await fetch('/api/usd',{cache:'no-store'});if(!r.ok)throw 0;const u=await r.json();if(!(u&&u.rate>0))throw 0;USD=u;usdRender()}catch(e){$('usrc').textContent="Exchange rates are unavailable right now."}}
+function convRender(){const a=+$('cam').value||0,f=$('cfr').value,t=$('cto').value,rf=egp(f),rt=egp(t);if(!rf||!rt){$('cres1').textContent="";$('cres2').textContent="";return}
+$('cres1').textContent=`${a.toLocaleString('en-US')} ${f} in ${t}`;$('cres2').textContent=(a*rf/rt).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:t==="EGP"?2:4});}
+function usdRender(){if(!USD)return;const C=curs(),R=C.USD.rate;if(!C[CURSEL])CURSEL="USD";const o=C[CURSEL],ch=o.prev?o.rate/o.prev-1:null;
+$('ulb').textContent=`1 ${CN[CURSEL][0]} (${CURSEL}) in Egyptian pounds`;$('uh').textContent=f2(o.rate)+" EGP";
+$('uc').innerHTML=ch===null?"":`<span style="color:var(--gd)">${ch>=0?"▲":"▼"} ${f2(Math.abs(o.rate-o.prev))} (${(Math.abs(ch)*100).toFixed(2)}%)</span> <span class="lbl">vs previous close</span>`;
+const pts=(o.series||[]).slice(-60).map(x=>x[1]);$('usp').innerHTML=pts.length>2?sparkSvg(pts):"";
+$('usrc').textContent=`Source: ${o.src||USD.source}${o.at?", "+new Date(o.at).toLocaleString(LOC,{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):""}. Market rates, which can differ from bank and exchange-office rates.`;
+$('ucur').innerHTML="<tr><th></th><th>1 unit in EGP</th><th>Change</th></tr>"+Object.keys(CN).filter(c=>c!=="EGP"&&C[c]).map(c=>{const x=C[c],d=x.prev?x.rate/x.prev-1:null;return`<tr data-c="${c}" style="cursor:pointer${c===CURSEL?";background:var(--ln)":""}"><td>${CN[c][1]} ${c}<div class="lbl">${CN[c][0]}</div></td><td>${f2(x.rate)}</td><td style="color:var(--gd)">${d===null?"–":(d>=0?"▲ ":"▼ ")+(Math.abs(d)*100).toFixed(2)+"%"}</td></tr>`}).join("");
+$('ucur').querySelectorAll('tr[data-c]').forEach(r=>r.onclick=()=>{CURSEL=r.dataset.c;usdRender()});
+convRender();
+const ln=(a,b)=>`<div class="line"><span>${a}</span><b>${b}</b></div>`,g24=st.p*24/21;let h="";
+if(WORLD){const oz=WORLD,imp=g24*31.1035/oz;h+=ln("World gold",`$${f2(oz)} per ounce`)+ln("Ounce at this rate",f2(oz*R)+" EGP")+ln("24K gram at this rate",f2(oz*R/31.1035)+" EGP")+ln("Egyptian dealer 24K gram",f2(g24)+" EGP")+ln("Dealer premium over this rate",pc(g24/(oz*R/31.1035)-1,1))+ln("Dollar rate priced into local gold",f2(imp)+" EGP")}
+if(NEWS)h+=ln("Pound news",tone(NEWS.scores.egp,"weakening (lifts local gold)","strengthening (pulls local gold down)"));
+$('ugold').innerHTML=h+`<div class="note">A weaker pound (a higher number above) lifts gold prices in Egypt even when world gold is flat. The dollar rate priced into local gold shows the rate Egyptian dealers are really using.</div>`}
+const curA=t=>{if(!USD)return"The exchange rates aren’t loaded yet. Try again in a moment.";const C=curs(),m=[[/dollar|usd|\$|دولار/,"USD"],[/euro|\beur\b|€|يورو/,"EUR"],[/sterling|gbp|british|£|استرليني|إسترليني|بريطان/,"GBP"],[/\baud\b|australia|استرال/,"AUD"],[/saudi|\bsar\b|سعود/,"SAR"],[/qatar|\bqar\b|قطر/,"QAR"]];let want=m.filter(([r])=>r.test(t)).map(x=>x[1]);if(/riyal|ريال/.test(t)&&!want.includes("SAR")&&!want.includes("QAR"))want.push("SAR","QAR");if(!want.length)want=Object.keys(C);
+const n=(t.match(/(\d+(?:\.\d+)?)/)||[])[1];
+let out="<b>Exchange rates in EGP</b>\n"+want.filter(c=>C[c]).map(c=>{const x=C[c],d=x.prev?x.rate/x.prev-1:null;return`${CN[c][1]} 1 ${c} = ${f2(x.rate)} EGP`+(d===null?"":` (${d>=0?"▲":"▼"}${(Math.abs(d)*100).toFixed(2)}%)`)}).join("\n");
+if(n&&want.length===1&&C[want[0]])out+=`\n${n} ${want[0]} = ${f2(+n*C[want[0]].rate)} EGP`;
+if(/will|forecast|predict|should|go up|go down|buy|sell|expect/.test(t))out+="\nI only forecast gold, not currencies, so I can’t say where these rates are heading.";
+return out+"\nUse the Currency tab to convert between any two of them."}
+// ---- news ----
+let NEWS=null,newsManual=false;const tm=x=>{const d=new Date(x);return x&&!isNaN(d)?d.toLocaleTimeString(LOC,{hour:"2-digit",minute:"2-digit"}):""};const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tone=(v,a,b)=>v>.25?a:v<-.25?b:"neutral";
+async function newsLoad(){try{const r=await fetch('/api/news',{cache:'no-store'});if(!r.ok)throw 0;NEWS=await r.json();if(!(NEWS&&NEWS.scores&&isFinite(NEWS.composite))){NEWS=null;throw 0}applyNews();renderNews()}catch(e){}}
+function applyNews(){if(!NEWS||newsManual)return;const m=v=>v>.25?1:v<-.25?-1:0,s=NEWS.scores;$('f1').value=m(s.gold);$('f2').value=m(s.egp);$('f3').value=m(s.rates);$('f4').value=m(s.tension);outlook()}
+function renderNews(){if(!NEWS)return;const s=NEWS.scores;$('news').innerHTML=`<div class="note">News tracker: ${NEWS.count} headlines from the last 48 hours</div>`+[["World gold news",tone(s.gold,"positive","negative")],["Egyptian pound",tone(s.egp,"weakening (lifts local gold)","strengthening")],["US interest rates",tone(s.rates,"cuts expected","hikes expected")],["World tension",tone(s.tension,"high","easing")]].map(([a,b])=>`<div class="line"><span>${a}</span><b>${b}</b></div>`).join("")+NEWS.items.slice(0,6).map(n=>`<div class="note"><a href="${esc(n.link)}" target="_blank" rel="noopener" style="color:inherit">${esc(n.title)}</a>${n.src?" · "+esc(n.src):""}</div>`).join("")}
+function newsA(){if(!NEWS)return"I can’t reach the news feed right now. Try again in a minute.";const s=NEWS.scores,c=NEWS.composite;
+return`<b>News tracker</b> (${NEWS.count} headlines, last 48h): overall <b>${c>.1?"supportive of higher gold prices":c<-.1?"pushing gold prices lower":"mixed, no clear push"}</b>.\nWorld gold news: ${tone(s.gold,"positive","negative")}\nEgyptian pound: ${tone(s.egp,"weakening (lifts local gold)","strengthening")}\nUS rates: ${tone(s.rates,"cuts expected","hikes expected")}\nWorld tension: ${tone(s.tension,"high","easing")}\n`+NEWS.items.slice(0,4).map(n=>"• "+esc(n.title)+(n.src?" ("+esc(n.src)+")":"")).join("\n")+"\nThese feed into the forecast automatically."}
+// ---- AI model ----
+const AI={started:false,busy:false,res:null,v:{h:2,side:'b'},cr:252,retry:0};
+const rng=s=>()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const stdv=a=>{const m=a.reduce((x,y)=>x+y,0)/a.length;return Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/a.length)||1e-9};
+const cdf=z=>{const t=1/(1+.2316419*Math.abs(z)),d=.3989423*Math.exp(-z*z/2),p=d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-p:p};
+const pc=(x,d=1)=>(x>=0?"+":"")+(x*100).toFixed(d)+"%";
+function feats(c,f,i){const L=k=>Math.log(c[i]/c[i-k]),sm=n=>{let s=0;for(let j=i-n+1;j<=i;j++)s+=c[j];return s/n},r1=[];for(let j=i-19;j<=i;j++)r1.push(Math.log(c[j]/c[j-1]));
+let u=0,d=0;for(let j=i-13;j<=i;j++){const x=c[j]-c[j-1];x>0?u+=x:d-=x}const rs=d===0?100:100-100/(1+u/d);let mx=0;for(let j=Math.max(0,i-251);j<=i;j++)mx=Math.max(mx,c[j]);
+return[L(1),L(3),L(5),L(10),L(20),Math.log(c[i]/sm(5)),Math.log(c[i]/sm(20)),Math.log(c[i]/sm(50)),(rs-50)/50,stdv(r1.slice(-10)),stdv(r1),Math.log(c[i]/mx),Math.log(f[i]/f[i-5])]}
+function ridge(X,y,lam){const d=X[0].length,m=d+1,A=Array.from({length:m},()=>new Array(m+1).fill(0));
+for(let n=0;n<X.length;n++){const x=[...X[n],1];for(let a=0;a<m;a++){for(let b=0;b<m;b++)A[a][b]+=x[a]*x[b];A[a][m]+=x[a]*y[n]}}
+for(let a=0;a<d;a++)A[a][a]+=lam*X.length;
+for(let i=0;i<m;i++){let p=i;for(let r=i+1;r<m;r++)if(Math.abs(A[r][i])>Math.abs(A[p][i]))p=r;[A[i],A[p]]=[A[p],A[i]];const dv=A[i][i]||1e-12;for(let r=0;r<m;r++){if(r===i)continue;const q=A[r][i]/dv;for(let k=i;k<=m;k++)A[r][k]-=q*A[i][k]}}
+return A.map((r,i)=>r[m]/(r[i]||1e-12))}
+function mlpTrain(X,y,H=8,ep=150,seed=7){const d=X[0].length,R=rng(seed),np=H*d+2*H+1,th=new Float64Array(np),m=new Float64Array(np),v=new Float64Array(np),n=X.length;for(let i=0;i<np;i++)th[i]=(R()-.5)*.5;
+for(let e=1;e<=ep;e++){const g=new Float64Array(np);
+for(let s=0;s<n;s++){const x=X[s],h=new Array(H);let o=th[np-1];for(let j=0;j<H;j++){let z=th[H*d+j];for(let k=0;k<d;k++)z+=th[j*d+k]*x[k];h[j]=Math.tanh(z);o+=th[H*d+H+j]*h[j]}
+const de=2*(o-y[s])/n;g[np-1]+=de;for(let j=0;j<H;j++){g[H*d+H+j]+=de*h[j];const dz=de*th[H*d+H+j]*(1-h[j]*h[j]);g[H*d+j]+=dz;for(let k=0;k<d;k++)g[j*d+k]+=dz*x[k]}}
+for(let i=0;i<np;i++){g[i]+=3e-3*th[i];m[i]=.9*m[i]+.1*g[i];v[i]=.999*v[i]+.001*g[i]*g[i];th[i]-=.01*(m[i]/(1-.9**e))/(Math.sqrt(v[i]/(1-.999**e))+1e-8)}}
+return x=>{let o=th[np-1];for(let j=0;j<H;j++){let z=th[H*d+j];for(let k=0;k<d;k++)z+=th[j*d+k]*x[k];o+=th[H*d+H+j]*Math.tanh(z)}return o}}
+function fit(X,y){const d=X[0].length,mu=[],sg=[];for(let k=0;k<d;k++){const col=X.map(r=>r[k]);mu.push(col.reduce((a,b)=>a+b,0)/col.length);sg.push(stdv(col))}
+const Z=X.map(r=>r.map((v,k)=>(v-mu[k])/sg[k])),sy=stdv(y),yz=y.map(v=>v/sy),w=ridge(Z,yz,.05),net=mlpTrain(Z,yz),nz=x=>x.map((v,k)=>(v-mu[k])/sg[k]);
+return x=>{const z=nz(x);return[(w.reduce((s,wi,i)=>s+wi*(i<z.length?z[i]:1),0))*sy,net(z)*sy]}}
+const rmse=(p,y)=>Math.sqrt(p.reduce((s,v,i)=>s+(v-y[i])**2,0)/p.length),mae=(p,y)=>p.reduce((s,v,i)=>s+Math.abs(v-y[i]),0)/p.length,dirAcc=(p,y)=>{let h=0,n=0;p.forEach((v,i)=>{if(y[i]!==0){n++;if(Math.sign(v)===Math.sign(y[i]))h++}});return n?h/n:0};
+const tick=()=>new Promise(r=>setTimeout(r,15));
+async function runH(c,f,h,label,set){const ix=[];for(let i=60;i+h<c.length;i++)ix.push(i);const X=ix.map(i=>feats(c,f,i)),y=ix.map(i=>Math.log(c[i+h]/c[i])),n=X.length,a=Math.floor(n*.7),b=Math.floor(n*.85);
+set("Training "+label+" model…");await tick();
+const m1=fit(X.slice(0,a-h),y.slice(0,a-h)),ens=r=>(r[0]+r[1])/2,pv=X.slice(a,b-h).map(x=>ens(m1(x))),yv=y.slice(a,b-h);
+let al=0,best=Infinity;for(let k=0;k<=10;k++){const e=rmse(pv.map(v=>v*k/10),yv);if(e<best){best=e;al=k/10}}
+const pt=X.slice(b).map(x=>m1(x)),yt=y.slice(b),pe=pt.map(ens),ps=pe.map(v=>v*al),rm=rmse(ps,yt),rn=rmse(yt.map(()=>0),yt);
+const acc={dir:dirAcc(pe,yt),mae:mae(ps,yt),maeN:mae(yt.map(()=>0),yt),edge:1-rm/rn,alpha:al,n:yt.length,sig:Math.max(rm,1e-4),ridgeDir:dirAcc(pt.map(r=>r[0]),yt),netDir:dirAcc(pt.map(r=>r[1]),yt)};
+acc.ok=acc.alpha>0&&acc.edge>.02&&acc.dir>.55;
+await tick();const mf=fit(X,y),pr=mf(feats(c,f,c.length-1)),ret=ens(pr)*al;
+return{h,label,acc,ret,sig:acc.sig,ridge:pr[0],net:pr[1]}}
+const TK={get(){try{return JSON.parse(localStorage.getItem('andy_track')||'{"p":[],"d":[]}')}catch(e){return{p:[],d:[]}}},set(o){try{localStorage.setItem('andy_track',JSON.stringify(o))}catch(e){}}},HD=[1,7,30];
+function trackEval(){const o=TK.get(),now=Date.now(),keep=[];let ch=false;for(const r of o.p){const due=r.t+HD[r.k]*864e5;if(now<due){keep.push(r);continue}ch=true;if(now-due<=3*864e5&&st.p>0){const a=Math.log(st.p/r.base);o.d.push({k:r.k,e:a-r.ret,hit:Math.sign(a)===Math.sign(r.ret)?1:0})}}if(ch){o.p=keep;o.d=o.d.slice(-300);TK.set(o)}}
+function trackAdj(k){const D=TK.get().d.filter(x=>x.k===k);if(D.length<5)return{n:D.length,b:0,s:0,hit:null};return{n:D.length,b:D.reduce((a,x)=>a+x.e,0)/D.length,s:stdv(D.map(x=>x.e)),hit:D.reduce((a,x)=>a+x.hit,0)/D.length}}
+function trackAdd(res){const o=TK.get(),now=Date.now();res.forEach((r,k)=>{if(o.p.some(x=>x.k===k&&now-x.t<12*36e5))return;o.p.push({t:now,k,base:st.p,ret:r.ret0})});o.p=o.p.slice(-60);TK.set(o)}
+function analyse(c,d){const r=[];for(let i=1;i<c.length;i++)r.push(Math.log(c[i]/c[i-1]));const n=c.length,sm=k=>c.slice(-k).reduce((a,b)=>a+b,0)/k;let pk=c[0],dd=0;for(const v of c){pk=Math.max(pk,v);dd=Math.min(dd,v/pk-1)}
+const m=r.reduce((a,b)=>a+b,0)/r.length,s=stdv(r),ac=r.slice(1).reduce((t,v,i)=>t+(v-m)*(r[i]-m),0)/r.length/(s*s),hi=Math.max(...c.slice(-252));let u=0,dn=0;for(let i=n-14;i<n;i++){const x=c[i]-c[i-1];x>0?u+=x:dn-=x}
+const rsi=dn===0?100:100-100/(1+u/dn),bi=r.indexOf(Math.max(...r)),wi=r.indexOf(Math.min(...r));
+return{n,from:d[0],to:d[n-1],ann:m*252,vol:s*Math.sqrt(252),dd,ac,y1:Math.log(c[n-1]/c[Math.max(0,n-253)]),off:c[n-1]/hi-1,sma50:sm(50),sma200:sm(Math.min(200,n)),rsi,best:[r[bi],d[bi+1]],worst:[r[wi],d[wi+1]]}}
+async function aiRun(silent){AI.started=true;trackEval();if(AI.busy)return;AI.busy=true;const set=t=>{$('aist').textContent=t};
+try{set("Downloading about 5 years of daily gold and dollar data…");const r=await fetch('/api/history');if(!r.ok){let d="";try{d=(await r.json()).detail||""}catch(e){}throw new Error(r.status===404?"The file api/history.js isn’t on your site yet (error 404)":"The history sources didn’t respond (error "+r.status+")"+(d?": "+d:""))}const H=await r.json();if(!H.fx||H.fx.length<50){const k=(USD&&USD.rate)||50;H.fx=H.gold.map(([t])=>[t,k])}
+const fm=new Map(H.fx.map(([t,v])=>[new Date(t).toISOString().slice(0,10),v]));let lf=H.fx[0][1];const raw=[],f=[],d=[];
+for(const[t,v]of H.gold){const k=new Date(t).toISOString().slice(0,10);if(fm.has(k))lf=fm.get(k);raw.push(v*lf/31.1035*21/24);f.push(lf);d.push(k)}
+if(raw.length<400)throw new Error("Not enough price history was returned");const kn=new Map(series()),pts=[];raw.forEach((v,i)=>{if(kn.has(d[i]))pts.push([i,kn.get(d[i])/v])});if(!pts.length||pts[pts.length-1][0]<raw.length-1)pts.push([raw.length-1,st.p/raw[raw.length-1]]);
+const ratio=raw.map((_,i)=>{const L=pts[pts.length-1];if(i<=pts[0][0])return pts[0][1];if(i>=L[0])return L[1];let j=0;while(pts[j+1][0]<i)j++;const[a,ra]=pts[j],[b,rb]=pts[j+1];return ra+(rb-ra)*(i-a)/(b-a)}),c=raw.map((v,i)=>v*ratio[i]);
+set("Reading the news…");if(!NEWS)await newsLoad();set("Analysing the data…");await tick();const an=analyse(c,d),hz=[[1,"1-day"],[5,"1-week"],[21,"1-month"]],out=[];
+for(const[h,l]of hz)out.push(await runH(c,f,h,l,set));
+for(let k=0;k<out.length;k++){const o=out[k],t=trackAdj(k);o.ret0=o.ret;if(t.n>=5){o.ret-=Math.max(-o.sig,Math.min(o.sig,t.b*.5));if(t.hit!==null&&t.hit<.45&&t.n>=8)o.ret*=.5;o.sig=Math.max(o.sig,t.s)}}
+for(const o of out){o.na=(NEWS?NEWS.composite:0)*.25*o.sig;o.ret+=o.na}
+trackAdd(out);AI.res={an,out,c,d,cur:c[c.length-1],src:H.source||"",at:Date.now()};set("");aiRender()}
+catch(e){AI.res=null;$('aiout').innerHTML=`<div class="note"><b>The AI model couldn’t get enough price history.</b><br>${esc(e&&e.message||"Unknown error")}.<br>It needs years of daily prices, and without them any forecast would be a guess, so Andy won’t show one. Andy will retry automatically.</div>`;if(AI.retry++<3)setTimeout(()=>{if(!AI.busy)aiRun(true)},60000);set("")}
+AI.busy=false}
+const seg=(id,o,c)=>`<div class="seg" id="${id}">${o.map(([v,t])=>`<button type="button" data-v="${v}"${v==c?' class="on"':''}>${t}</button>`).join("")}</div>`;
+const rowsFor=(pa,ge)=>{const p24=pa*24/21,R=[],cx=+$('cx').value||1.7;[24,21,18,14].forEach(k=>R.push(["Gold by karat",k+"K"+(k===21?" (most traded)":""),pa*k/21,ge*k/21]));
+R.push(["Coins","Gold pound (8g, 21K)",pa*8,ge*8]);[[1,"1g"],[5,"5g"],[10,"10g"],[20,"20g"],[31.1035,"1 oz"],[100,"100g"]].forEach(([w,t])=>R.push(["Market gold bars (24K)","Bar "+t,p24*w*1.015,p24*w*.99]));
+[[1,"1g"],[2.5,"2.5g"],[5,"5g"],[10,"10g"],[20,"20g"],[31.1035,"1 oz"],[50,"50g"],[100,"100g"]].forEach(([w,t])=>{const b=p24*w*(1+bp(w)/100);R.push(["BTC gold bars (24K, estimated)","BTC "+t,b,b*(1-cx/100)])});return R};
+function aiTable(){const R=AI.res,o=R.out[AI.v.h],f=Math.exp(o.ret),ix=AI.v.side==="b"?2:3,now=rowsFor(st.p,st.p-st.sp),fc=rowsFor(st.p*f,(st.p-st.sp)*f);let g="",h="<tr><th></th><th>Now</th><th>Forecast</th><th>Change</th></tr>";
+now.forEach((r,i)=>{if(r[0]!==g){g=r[0];h+=`<tr><td colspan="4" class="lbl" style="font-weight:600;padding-top:16px">${g}</td></tr>`}h+=`<tr><td>${r[1]}</td><td>${f2(r[ix])}</td><td class="${f>=1?"up":"dn"}">${f2(fc[i][ix])}</td><td class="${f>=1?"up":"dn"}">${pc(f-1,2)}</td></tr>`});
+$('aitab').innerHTML=h}
+const fdt=i=>new Date(i+"T00:00:00").toLocaleDateString(LOC,{day:"numeric",month:"short",year:"numeric"});
+function aiChart(){const R=AI.res;if(!R)return;const n=R.c.length,len=AI.cr&&AI.cr<n?AI.cr:n,s0=n-len,pts=R.c.slice(s0),ds=R.d.slice(s0),m=R.out[2],cur=R.cur,fp=cur*Math.exp(m.ret),lo=cur*Math.exp(m.ret-m.sig),hi=cur*Math.exp(m.ret+m.sig);
+const F=Math.max(4,Math.round(len*.1)),T=len-1+F,W=340,H=250,L=50,Rr=10,Tp=14,B=40,pw=W-L-Rr,ph=H-Tp-B;let mn=Math.min(...pts,lo),mx=Math.max(...pts,hi);const pad=(mx-mn)*.06||1;mn-=pad;mx+=pad;
+const X=i=>L+i/T*pw,Y=v=>Tp+(1-(v-mn)/(mx-mn))*ph,rw=(mx-mn)/4,mg=Math.pow(10,Math.floor(Math.log10(rw))),stp=[1,2,2.5,5,10].map(k=>k*mg).find(v=>v>=rw)||rw,up=fp>=cur;
+let yt="";for(let v=Math.ceil(mn/stp)*stp;v<=mx;v+=stp)yt+=`<line x1="${L}" x2="${W-Rr}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--ln)"/><text x="${L-6}" y="${Y(v)+3.5}" text-anchor="end" font-size="10" fill="var(--mu)">${Math.round(v).toLocaleString('en-US')}</text>`;
+let xt="";for(let k=0;k<4;k++){const i=Math.round(k*(len-1)/3),d=new Date(ds[i]+"T00:00:00");xt+=`<text x="${X(i)}" y="${Tp+ph+14}" text-anchor="${k===0?"start":"middle"}" font-size="10" fill="var(--mu)">${d.toLocaleDateString(LOC,len>150?{month:"short",year:"2-digit"}:{day:"numeric",month:"short"})}</text>`}
+$('aich').innerHTML=`<svg id="aisvg" viewBox="0 0 ${W} ${H}" width="100%" style="touch-action:pan-y;display:block">${yt}${xt}<rect x="${X(len-1)}" y="${Tp}" width="${X(T)-X(len-1)}" height="${ph}" fill="var(--gd)" opacity=".07"/>
+<text x="${L+pw/2}" y="${H-6}" text-anchor="middle" font-size="10" fill="var(--mu)">Date (past to next month)</text><text transform="rotate(-90)" x="${-(Tp+ph/2)}" y="11" text-anchor="middle" font-size="10" fill="var(--mu)">21K gold, EGP per gram</text>
+<polyline fill="none" stroke="var(--gd)" stroke-width="1.8" stroke-linejoin="round" points="${pts.map((v,i)=>X(i).toFixed(1)+","+Y(v).toFixed(1)).join(" ")}"/>
+<line x1="${X(len-1)}" y1="${Y(cur)}" x2="${X(T)}" y2="${Y(fp)}" stroke="${up?"var(--up)":"var(--dn)"}" stroke-width="2" stroke-dasharray="4 3"/><line x1="${X(T)}" x2="${X(T)}" y1="${Y(hi)}" y2="${Y(lo)}" stroke="var(--mu)" stroke-width="3" stroke-linecap="round"/><circle cx="${X(T)}" cy="${Y(fp)}" r="3.5" fill="${up?"var(--up)":"var(--dn)"}"/>
+<text x="${X(T)-6}" y="${Y(hi)-5}" text-anchor="end" font-size="10" font-weight="700" fill="var(--ink)">${Math.round(fp).toLocaleString('en-US')}</text>
+<line id="aix" x1="0" x2="0" y1="${Tp}" y2="${Tp+ph}" stroke="var(--mu)" stroke-dasharray="3 3" opacity="0"/><circle id="aid" r="4.5" cx="0" cy="0" fill="var(--gd)" stroke="var(--bg)" stroke-width="1.5" opacity="0"/></svg>`;
+const tip=$('aitip'),def="Touch or drag along the chart to read the price on any day.",sv=$('aisvg');tip.innerHTML=def;
+const show=e=>{const r=sv.getBoundingClientRect(),vx=(e.clientX-r.left)/r.width*W;let i=Math.max(0,Math.min(T,Math.round((vx-L)/pw*T))),v,h;
+if(i<=len-1){v=pts[i];h=`<b>${fdt(ds[i])}</b>: 21K ${f2(v)} EGP (${pc(v/pts[0]-1)} since ${fdt(ds[0])})`}else{i=T;v=fp;h=`<b>AI forecast, about 1 month ahead</b>: ${f2(fp)} EGP (likely ${f2(lo)} to ${f2(hi)})`}
+const ax=$('aix'),ad=$('aid');ax.setAttribute('x1',X(i));ax.setAttribute('x2',X(i));ax.setAttribute('opacity','1');ad.setAttribute('cx',X(i));ad.setAttribute('cy',Y(v));ad.setAttribute('opacity','1');tip.innerHTML=h};
+sv.addEventListener('pointermove',show);sv.addEventListener('pointerdown',show);sv.addEventListener('pointerleave',e=>{if(e.pointerType==="mouse"){$('aix').setAttribute('opacity','0');$('aid').setAttribute('opacity','0');tip.innerHTML=def}})}
+function aiWire(){$('aicr').querySelectorAll('button').forEach(b=>b.onclick=()=>{AI.cr=+b.dataset.v;$('aicr').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));aiChart()});aiChart();[["aih","h"],["ais","side"]].forEach(([id,k])=>$(id).querySelectorAll('button').forEach(b=>b.onclick=()=>{AI.v[k]=k==="h"?+b.dataset.v:b.dataset.v;$(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));aiTable()}));aiTable()}
+function aiRender(){const R=AI.res,a=R.an,cur=R.cur,o=R.out,fmt=x=>f2(x);
+const nws=NEWS?`<div class="note">News check: the latest news is ${NEWS.composite>.1?"supportive of gold":NEWS.composite<-.1?"negative for gold":"mixed"}, which moved the 1-month forecast by ${pc(o[2].na||0,2)}.</div>`:"",m=o[2],dir=m.ret>.01?"rise":m.ret<-.01?"fall":"stay about the same",good=o.filter(x=>x.acc.ok).length;
+const row=(k,v)=>`<div class="line"><span>${k}</span><span>${v}</span></div>`;
+const pts=R.c.slice(-250),mn=Math.min(...pts),mx=Math.max(...pts),W=300,Hh=90,X=i=>i/(pts.length+25)*W,Y=v=>Hh-6-(v-mn)/(mx-mn||1)*(Hh-14),fp=cur*Math.exp(m.ret),n0=pts.length-1;
+$('aiout').innerHTML=`<div class="hero"><h3>AI view</h3><div class="tot"><span class="lbl">Next month, 21K per gram (Egyptian price)</span><b class="${m.ret>=0?"up":"dn"}">${fmt(fp)}</b></div><div class="note">The model expects the price to ${dir} (${pc(m.ret)}) from ${fmt(cur)}. ${good?`It showed some real skill in past tests for ${good} of 3 horizons.`:"In past tests it did not beat simply assuming “no change”, so this forecast is shrunk toward no change and has low confidence."}</div>${nws}</div>
+<div class="card" style="margin-top:14px">${seg("aicr",[[63,"3M"],[126,"6M"],[252,"1Y"],[0,"All"]],AI.cr)}<div class="note" id="aitip" style="min-height:42px"></div><div id="aich"></div><div class="note">How to read it: left to right is time (date) and up is price. The gold line is the Egyptian 21K price per gram in EGP. The dashed line and grey bar on the right are the AI’s 1-month forecast and its likely range. Touch or drag along the chart to see the price on any day.</div></div>
+<h3>Forecast for every gold type (EGP, Egyptian market)</h3>${seg("aih",[[0,"Tomorrow"],[1,"1 week"],[2,"1 month"]],AI.v.h)}<div style="height:8px"></div>${seg("ais",[["b","Buy price"],["s","Sell price"]],AI.v.side)}<table id="aitab" style="margin-top:10px"></table>`;aiWire()}
+const aiTxt=()=>{if(!AI.res)return"\nTip: open the AI Model tab for a machine-learning forecast.";const m=AI.res.out[2];return`\nAI model (1 month): ${pc(m.ret)} to about ${f2(AI.res.cur*Math.exp(m.ret))}, ${m.acc.ok?"with measurable skill in past tests":"low confidence (no proven edge in past tests)"}.`};
+function aiHook(){document.querySelector('nav button[data-t="ai"]').addEventListener('click',()=>{if(!AI.busy&&(!AI.res||Date.now()-AI.res.at>18e5))aiRun()});setTimeout(()=>{if(!AI.started)aiRun(true)},2500);setInterval(()=>{if(!AI.busy)aiRun(true)},18e5)}
+// ---- Arabic translation layer ----
+const CNA={USD:"دولار أمريكي",EUR:"يورو",GBP:"جنيه إسترليني",AUD:"دولار أسترالي",SAR:"ريال سعودي",QAR:"ريال قطري",EGP:"جنيه مصري"};
+const TY={"jewelry":"مشغولات","bar/coin":"سبيكة/عملة","BTC bar":"سبيكة BTC","bar":"سبيكة"},CF={low:"منخفضة",medium:"متوسطة",high:"عالية"},HZ={"1-day":"يوم","1-week":"أسبوع","1-month":"شهر"};
+const DIR={rise:"يرتفع",fall:"ينخفض","stay about the same":"يظل مستقراً تقريباً","drift slightly higher":"يميل للارتفاع قليلاً","drift slightly lower":"يميل للانخفاض قليلاً","move sideways":"يتحرك أفقياً"};
+const EX={"Connecting":"جارٍ الاتصال","Prices":"الأسعار","Currency":"العملات","Calculator":"الحاسبة","Assistant":"المساعد","AI Model":"نموذج الذكاء الاصطناعي","21K gold · per gram · buy":"ذهب عيار 21 · للجرام · شراء","By karat (EGP per gram)":"حسب العيار (جنيه للجرام)","Coins and bars (EGP per piece)":"العملات والسبائك (جنيه للقطعة)","BTC gold bars, 24K (EGP per piece, estimated)":"سبائك BTC عيار 24 (جنيه للقطعة، تقديرية)","Match your local market":"طابق سوقك المحلي","21K price (EGP/g)":"سعر عيار 21 (جنيه/جم)","Buy–sell gap (EGP)":"الفرق بين الشراء والبيع (جنيه)","Match price":"تطبيق السعر","1 US dollar in Egyptian pounds":"1 دولار أمريكي بالجنيه المصري","Egyptian pound exchange rates (tap a currency)":"أسعار صرف الجنيه المصري (اضغط على عملة)","Converter":"محوّل العملات","Amount":"المبلغ","Swap":"تبديل","From":"من","To":"إلى","What the dollar means for gold":"ماذا يعني الدولار للذهب","Buying":"شراء","Selling":"بيع","Jewelry":"مشغولات","Bar or coin":"سبيكة أو عملة","BTC bar":"سبيكة BTC","Karat":"العيار","Weight (grams)":"الوزن (جرام)","Fee settings":"إعدادات الرسوم","Making charge (EGP/g)":"المصنعية (جنيه/جم)","VAT on making (%)":"ضريبة المصنعية (%)","Stamp fee (EGP)":"رسوم الدمغة (جنيه)","Extra deduction (EGP/g)":"خصم إضافي (جنيه/جم)","Bar premium (%)":"علاوة السبيكة (%)","Bar buy-back discount (%)":"خصم إعادة شراء السبيكة (%)","BTC buy-back spread (%)":"فرق إعادة شراء BTC (%)","BTC pack sealed when selling?":"هل عبوة BTC مختومة عند البيع؟","Yes":"نعم","No":"لا","New chat":"محادثة جديدة","Ask":"اسأل","Market outlook":"نظرة على السوق","World gold":"الذهب العالمي","Rising":"صعود","Flat":"مستقر","Falling":"هبوط","Egyptian pound":"الجنيه المصري","Egyptian Pound":"الجنيه المصري","When":"متى","Expected":"المتوقع","Range":"النطاق","Tips for you":"نصائح لك","Weakening":"ضعف","Stable":"ثبات","Strengthening":"قوة","US rates":"الفائدة الأمريكية","Cutting":"خفض","Hold":"تثبيت","Hike expected":"رفع متوقع","World tension":"التوتر العالمي","High":"مرتفع","Normal":"عادي","Low":"منخفض",
+"Sell":"بيع","Buy":"شراء","vs previous reading":"مقارنة بالقراءة السابقة","vs previous close":"مقارنة بالإغلاق السابق","Gold pound (8g, 21K)":"جنيه ذهب (8 جم، عيار 21)","Now":"الآن","Forecast":"التوقع","Change":"التغير","1 unit in EGP":"الوحدة بالجنيه","Gold by karat":"الذهب حسب العيار","Coins":"العملات","Market gold bars (24K)":"سبائك السوق (عيار 24)","BTC gold bars (24K, estimated)":"سبائك BTC (عيار 24، تقديرية)","Tomorrow":"غداً","1 week":"أسبوع","1 month":"شهر","3M":"3 شهور","6M":"6 شهور","1Y":"سنة","All":"الكل","Buy price":"سعر الشراء","Sell price":"سعر البيع","AI view":"رأي الذكاء الاصطناعي","Forecast for every gold type (EGP, Egyptian market)":"توقع كل أنواع الذهب (جنيه، السوق المصري)","Date (past to next month)":"التاريخ (من الماضي حتى الشهر القادم)","21K gold, EGP per gram":"ذهب عيار 21، جنيه للجرام","Touch or drag along the chart to read the price on any day.":"المس الرسم أو اسحب عليه لقراءة السعر في أي يوم.","Next month, 21K per gram (Egyptian price)":"الشهر القادم، عيار 21 للجرام (السعر المصري)","You pay (EGP)":"تدفع (جنيه)","You receive (EGP)":"تستلم (جنيه)","Stamp fee":"رسوم الدمغة","Making charge refunded":"المصنعية المستردة","VAT on bullion":"ضريبة السبائك","BTC premium returned (sealed pack)":"علاوة BTC المستردة (عبوة مختومة)","Premium not returned (pack opened)":"العلاوة غير مستردة (العبوة مفتوحة)","Offline, last price":"غير متصل، آخر سعر","Exchange rates are unavailable right now.":"أسعار الصرف غير متاحة الآن.","US Dollar":"الدولار الأمريكي","Euro":"اليورو","Pound Sterling":"الجنيه الإسترليني","Australian Dollar":"الدولار الأسترالي","Saudi Riyal":"الريال السعودي","Qatari Riyal":"الريال القطري","Yahoo Finance":"ياهو فاينانس","open.er-api.com (daily)":"open.er-api.com (يومي)","Ounce at this rate":"الأونصة بهذا السعر","24K gram at this rate":"جرام عيار 24 بهذا السعر","Egyptian dealer 24K gram":"جرام عيار 24 عند التجار","Dealer premium over this rate":"علاوة التجار فوق هذا السعر","Dollar rate priced into local gold":"سعر الدولار المحتسب في الذهب المحلي","Pound news":"أخبار الجنيه","World gold news":"أخبار الذهب العالمي","US interest rates":"الفائدة الأمريكية","positive":"إيجابية","negative":"سلبية","neutral":"محايدة","weakening (lifts local gold)":"ضعف (يرفع الذهب محلياً)","strengthening":"قوة","strengthening (pulls local gold down)":"قوة (يخفض الذهب محلياً)","cuts expected":"خفض متوقع","hikes expected":"رفع متوقع","high":"مرتفع","easing":"تهدئة","Reading the news…":"جارٍ قراءة الأخبار…","Analysing the data…":"جارٍ تحليل البيانات…","Downloading about 5 years of daily gold and dollar data…":"جارٍ تنزيل نحو 5 سنوات من بيانات الذهب والدولار اليومية…","The AI model couldn’t get enough price history.":"لم يتمكن النموذج من الحصول على تاريخ أسعار كافٍ.","AI forecast, about 1 month ahead":"توقع الذكاء الاصطناعي بعد نحو شهر","Are you looking to buy, sell, or hold?":"هل تريد الشراء أم البيع أم الاحتفاظ؟","Should I sell now?":"هل أبيع الآن؟","Should I buy?":"هل أشتري؟","Will gold go up this week?":"هل سيرتفع الذهب هذا الأسبوع؟","Price of 18K":"سعر عيار 18","Buy 10 grams of 21K":"شراء 10 جرام عيار 21","What is a making charge?":"ما هي المصنعية؟","Jewelry or bars?":"مشغولات أم سبائك؟","And 18K?":"وماذا عن عيار 18؟","BTC bars":"سبائك BTC","What about 20 grams?":"ماذا عن 20 جرام؟","Switch to selling":"حوّل إلى البيع","BTC bar instead":"سبيكة BTC بدلاً من ذلك","Why?":"لماذا؟","Forecast next month":"توقع الشهر القادم","Give me tips":"أعطني نصائح","Next week?":"الأسبوع القادم؟","Zakat on 100 g of 21K":"زكاة على 100 جرام عيار 21","Spot fake gold":"كيف أكشف الذهب المزيف","Store gold safely":"تخزين الذهب بأمان","BTC bar prices":"أسعار سبائك BTC","Ask about prices, timing, forecasts…":"اسأل عن الأسعار والتوقيت والتوقعات…","Ask Andy":"اسأل آندي","Theme":"المظهر"};
+const PRE=[["Buy is what a shop charges","الشراء هو ما يطلبه المحل منك. البيع هو ما يدفعه لك المحل. المصنعية غير مشمولة (تضيفها الحاسبة). أسعار BTC تقديرية: سعر الذهب عيار 24 في السوق مضافاً إليه علاوة BTC المعتادة لكل حجم، فتأكد من التاجر. احتفظ بالعبوة المختومة والفاتورة لاسترداد المصنعية عند البيع."],
+["Prices follow the world gold","الأسعار تتبع سعر الذهب العالمي وتتحرك لحظياً. التجار المحليون يضيفون علاوتهم، لذا اكتب سعر عيار 21 عند تاجرك مرة واحدة وستتطابق الصفحة معه بعدها."],
+["Typical values.","قيم معتادة. تختلف المحلات، فتأكد قبل الشراء. لا تُسترد المصنعية عادةً عند بيع المشغولات."],
+["Andy updates these","يحدّث آندي هذه الخيارات تلقائياً من آخر الأخبار. ويمكنك تغييرها:"],
+["The AI model is getting ready","نموذج الذكاء الاصطناعي قيد التحضير. يعمل تلقائياً ويتحدث باستمرار."],
+["Local prices are read automatically","تُقرأ الأسعار المحلية تلقائياً من قناة سوق الدهب (t.me/SOUQELDAHB24). آندي جولد أداة معلوماتية وليست نصيحة مالية مرخّصة. لا أحد يستطيع توقع الذهب بدقة. الأسعار تقديرية وليست عروضاً رسمية من التجار."],
+["A weaker pound (a higher","ضعف الجنيه (رقم أعلى أعلاه) يرفع أسعار الذهب في مصر حتى لو ثبت الذهب العالمي. وسعر الدولار المحتسب في الذهب المحلي يوضح السعر الذي يستخدمه التجار فعلياً."],
+["How to read it:","طريقة القراءة: من اليسار إلى اليمين هو الزمن (التاريخ)، ومن الأسفل إلى الأعلى هو السعر. الخط الذهبي هو سعر عيار 21 للجرام بالجنيه في مصر. الخط المتقطع والشريط الرمادي على اليمين هما توقع الذكاء الاصطناعي لشهر قادم ونطاقه المحتمل. المس الرسم أو اسحب عليه لرؤية السعر في أي يوم."],
+["It needs years of daily prices","يحتاج إلى سنوات من الأسعار اليومية، وبدونها يصبح أي توقع مجرد تخمين، لذلك لن يعرض آندي توقعاً. سيعيد آندي المحاولة تلقائياً."],
+["Hi, I’m Andy.","أهلاً، أنا آندي. أجيب من بيانات الذهب الحية اليوم وأتذكر محادثتنا حتى تضغط على «محادثة جديدة». اسأل عن الأسعار، متى تشتري أو تبيع، التوقعات، الرسوم، سبائك BTC، الزكاة، أو قل «أعطني نصائح»."],
+["You’re welcome.","على الرحب والسعة. تريد نصيحة أم توقعاً للأسبوع القادم أم حساب تكلفة؟"],
+["Here’s what drove my last","هذا ما بنيت عليه إجابتي الأخيرة:"],
+["These come from the price","هذه الأسباب مصدرها تاريخ الأسعار (الاتجاه والمتوسطات وRSI والزخم) وافتراضات الأخبار في «نظرة على السوق»."],
+["I haven’t given a recommend","لم أقدّم توصية بعد. اسأل أولاً «هل أبيع الآن؟» أو «هل سيرتفع الذهب؟»."],
+
+["Buy in 3–4 parts","اشترِ على 3–4 دفعات خلال بضعة أسابيع. لن تصيد القاع، لكنك تتجنب الشراء عند القمة."],
+["For saving, choose 24K","للادخار اختر سبائك أو عملات عيار 24: تكلفة زائدة نحو 1.5% فوق سعر الذهب بدلاً من مصنعية 200+ جنيه للجرام في المشغولات."],
+["With BTC bars keep","مع سبائك BTC احتفظ بالعبوة المختومة والفاتورة وإلا ستخسر المصنعية عند إعادة البيع."],
+["Compare making charges","قارن المصنعية في 2–3 محلات. فهي قابلة للتفاوض."],
+["Don’t chase a jump","لا تلاحق قفزة تزيد عن 2% في يوم واحد. غالباً يهدأ السعر."],
+["Decide your exit","حدّد خروجك قبل الشراء، مثلاً بع الثلث إذا ارتفع السعر 10%."],
+["Keep 6 months of cash","احتفظ بسيولة تكفي 6 شهور منفصلة. الذهب للمال الذي لن تحتاجه قريباً."],
+["Zakat applies once","تجب الزكاة عند امتلاك 85 جراماً من عيار 24 (أو ما يعادلها) لمدة عام هجري."],
+["Ask about zakat, storing","اسأل عن الزكاة أو تخزين الذهب بأمان أو كشف الذهب المزيف."],
+["Zakat on gold is 2.5%","زكاة الذهب 2.5% عند امتلاك 85 جراماً على الأقل من عيار 24 (أو ما يعادلها من العيارات الأقل) لمدة عام هجري كامل. أخبرني بالكمية، مثلاً «زكاة على 120 جرام عيار 21»."],
+["Confirm details with a rel","تأكد من التفاصيل من جهة دينية مختصة."],
+["To avoid fake gold","لتجنب الذهب المزيف: اشترِ من محل مرخّص، وافحص الدمغة وعلامة العيار، واطلب فاتورة، ووزن القطع الكبيرة على ميزان المحل المعتمد. يمكن للصائغ إجراء اختبار حمض أو أشعة. انجذاب القطعة للمغناطيس علامة سيئة. السبائك المختومة من صانعين معروفين مثل BTC هي الأسهل في الثقة."],
+["For storage, a bank","للتخزين، خزنة البنك أأمن خيار، وخزنة منزلية مخفية أرخص لكنها أخطر. احفظ الفواتير والعبوة بعيداً عن الذهب، ولا تخبر أحداً بما تملك، وفكّر في تأمين المنزل للمبالغ الكبيرة."],
+["Say “and 18K”","قل «وماذا عن عيار 18» أو «ماذا عن 20 جرام» أو «حوّل إلى البيع» للمقارنة."],
+["Ask “should I sell or buy","اسأل «هل أبيع أم أشتري؟» للحصول على خطة."],
+["Ask “why?”, “forecast","اسأل «لماذا؟» أو «توقع الأسبوع القادم» أو «بيع 20 جرام عيار 21» للمتابعة."],
+["Ask “and BTC bars?”","اسأل «وماذا عن سبائك BTC؟» أو «هل أبيع الآن؟»."],
+["Estimates: market price plus","تقديرات: سعر السوق مضافاً إليه علاوة BTC المعتادة. تأكد من التاجر."],
+["Want to know the best time","تريد معرفة أفضل وقت لبيعها؟ اسأل فقط."],
+["Keep the sealed pack and invoice until","احتفظ بالعبوة المختومة والفاتورة حتى تبيع، وإلا ستخسر المصنعية."],
+["If you’re selling, that argues for waiting","إن كنت تبيع، فهذا يعني الانتظار."],
+["If you’re selling, that argues for selling","إن كنت تبيع، فهذا يعني البيع قريباً."],
+["If you’re buying, that argues for buying","إن كنت تشتري، فهذا يعني الشراء مبكراً."],
+["If you’re buying, that argues for waiting","إن كنت تشتري، فهذا يعني انتظار هبوط في السعر."],
+["Tip: open the AI Model tab","نصيحة: افتح تبويب نموذج الذكاء الاصطناعي لتوقع بالتعلم الآلي."],
+["Sell 70–100% now.","بع 70–100% الآن."],["Buy half now","اشترِ النصف الآن والباقي خلال أسبوعين."],["Split your money into 4","وزّع مالك على 4 مشتريات أسبوعية."],["Review monthly.","راجع شهرياً. اجعل الذهب نحو 10–20% من مدخراتك واحتفظ بسيولة 6 شهور منفصلة."],
+["Sell a third now","بع الثلث الآن والثلث بعد أسبوع والثلث بعد أسبوعين."],
+["These feed into the forecast","هذه العوامل تدخل في التوقع تلقائياً."],["I can’t reach the news feed","لا أستطيع الوصول إلى الأخبار الآن. حاول بعد دقيقة."],
+["I only forecast gold","أتوقع الذهب فقط وليس العملات، لذا لا أستطيع القول إلى أين تتجه هذه الأسعار."],["Use the Currency tab","استخدم تبويب العملات للتحويل بين أي عملتين منها."],["The exchange rates aren’t","أسعار الصرف لم تُحمَّل بعد. حاول بعد قليل."],
+["A common guideline is 10–20%","القاعدة الشائعة: 10–20% من مدخراتك في الذهب، منفصلة عن سيولة طوارئ تكفي 6 شهور. اشترِ على دفعات بدلاً من دفعة واحدة، وفضّل السبائك والعملات على المشغولات للادخار."],
+["For saving: «24K bars","للادخار: «سبائك أو عملات عيار 24» لها أقل تكلفة زائدة (نحو 1.5% عند الشراء و1% عند إعادة البيع). سبائك BTC تزيد قليلاً في الأحجام الصغيرة لكن إعادة بيعها سهلة. المشغولات تضيف نحو 200 جنيه/جم مصنعية وضريبة 14% عليها، وتضيع غالباً عند البيع، فاشترها للارتداء لا للاستثمار. وبين العيارات، عيار 21 الأسهل تداولاً وعيار 24 الأقل علاوة."],
+["I want to get this right","أريد أن أجيب بدقة لكنني لم أفهم قصدك. يمكنني مساعدتك في الأسعار (أي عيار وسبائك BTC والجنيه الذهب)، وهل تبيع أو تشتري الآن، والتوقعات، وحساب التكلفة، والرسوم، والزكاة، وتخزين الذهب، وكشف الذهب المزيف. ماذا تقصد؟"],
+["The making charge (","المصنعية هي أجر المحل لتصنيع المشغولات، وتتراوح غالباً بين 100 و300 جنيه للجرام. تدفعها مع ضريبة 14% عليها عند الشراء، ولا تستردها عادةً عند البيع. لذلك السبائك والعملات أفضل من المشغولات للادخار."],
+["VAT (14%) is charged","ضريبة القيمة المضافة (14%) تُحتسب على مصنعية المشغولات وليس على الذهب نفسه. اطلب دائماً فاتورة توضح الوزن والعيار والدمغة، فهي تثبت ما اشتريته وتسهّل إعادة البيع."],
+["Karat shows purity","العيار يدل على النقاء: عيار 24 ذهب بنسبة 99.9%، وعيار 21 بنسبة 87.5%، وعيار 18 بنسبة 75%، وعيار 14 بنسبة 58.3%. عيار 21 الأكثر تداولاً في مصر، وسعره 21/24 من سعر عيار 24."],
+["The spread is the gap","الفرق هو الفجوة بين سعر شراء المحل وسعر بيعه: نحو %S% جنيه للجرام لعيار 21 الآن. وهو هامش التاجر، لذا فالبيع بعد الشراء مباشرة يخسر هذا الفرق دائماً."],
+["BTC is a popular","BTC شركة مصرية شهيرة لسبائك وعملات الذهب المختومة. سعر سبيكتها هو سعر الذهب مضافاً إليه علاوة (نحو 1.1% للسبيكة 100 جم وحتى نحو 3% للسبيكة 1 جم). وعند إعادة البيع تخسر نحو 1.7%. احتفظ بالعبوة المختومة والفاتورة لاسترداد المصنعية."],
+["RSI shows whether","مؤشر RSI يبين هل ارتفع السعر أو انخفض بسرعة زائدة (فوق 70 ارتفاع مبالغ فيه، وتحت 30 انخفاض مبالغ فيه). ومؤشر MACD يقارن متوسطاً سريعاً بآخر بطيء لإظهار الزخم. يجمع آندي ذلك مع خط الاتجاه وتقاطع المتوسطات وافتراضات الأخبار في درجة واحدة."],
+["The gold pound is a coin","الجنيه الذهب عملة وزنها 8 جرامات من عيار 21. وسعره 8 أضعاف سعر جرام عيار 21، مضافاً إليه علاوة إذا كان من شركة معروفة."],
+["An ounce is 31.1035","الأونصة 31.1035 جرام. يُسعَّر الذهب عالمياً بالدولار للأونصة. وسعره في مصر هو ذلك السعر مضروباً في سعر الدولار مضافاً إليه علاوة السوق المحلي."],
+["World gold trading pauses","تتوقف تداولات الذهب العالمية في عطلة نهاية الأسبوع، لذا تتحرك الأسعار المصرية قليلاً فيها وقد تقفز عند إعادة فتح الأسواق. لا يوجد يوم أرخص باستمرار، فالشراء على دفعات أهم من اختيار يوم."],
+["Gold protects against a weaker","الذهب يحمي من ضعف الجنيه والتضخم لكنه لا يعطي فائدة وقد ينخفض شهوراً. شهادات البنوك تعطي فائدة ثابتة لكنها تخسر قيمتها إذا ضعف الجنيه. كثيرون يجمعون بين الاثنين."],
+["Gold in Egypt moves with three","يتحرك الذهب في مصر وفق ثلاثة عوامل: سعر الذهب العالمي بالدولار، وسعر الدولار مقابل الجنيه (ضعف الجنيه يرفع الأسعار المحلية)، والطلب المحلي. ارتفاع الفائدة الأمريكية يضغط عادةً على الذهب العالمي، بينما الخوف والتضخم يرفعانه."]];
+const RX=[
+[/^Today’s signal is (rising|falling|mixed): (.+)\.$/,m=>`إشارة اليوم ${({rising:"صاعدة",falling:"هابطة",mixed:"متباينة"})[m[1]]}: ${({"don’t rush to sell, and buy in parts":"لا تتعجل البيع واشترِ على دفعات","avoid large purchases and wait for a dip":"تجنب المشتريات الكبيرة وانتظر هبوطاً","split any buying or selling into parts":"وزّع أي شراء أو بيع على دفعات"})[m[2]]||m[2]}.`],
+[/^Live · (.+)$/,m=>"مباشر · "+m[1].split(" · ").map(s=>({"Souq El Dahab prices":"أسعار سوق الدهب","Souq El Dahab, live-adjusted":"سوق الدهب (محدّث لحظياً)","world price estimate":"تقدير من السعر العالمي"})[s]||s.replace(/^last Souq El Dahab post (.+)$/,"آخر نشرة لسوق الدهب $1")).join(" · ")],
+[/^(\d+)K(?: \(most traded\))?$/,(m,s)=>`عيار ${m[1]}`+(/most/.test(s)?" (الأكثر تداولاً)":"")],
+[/^(?:24K )?[Bb]ar (.+)$/,m=>"سبيكة "+sz(m[1])],[/^(\d+) days$/,m=>`${m[1]} يوماً`],[/^Good time to (buy|sell): (\d+)%$/,m=>`وقت مناسب لـ${m[1]==="buy"?"الشراء":"البيع"}: ${m[2]}%`],[/^BTC (\d.*)$/,m=>"BTC "+sz(m[1])],
+[/^Gold, ([\d,.]+) g × ([\d,.]+)( \(24K market\))?$/,m=>`الذهب، ${m[1]} جم × ${m[2]}`+(m[3]?" (سوق عيار 24)":"")],
+[/^Making charge, (\d+) EGP\/g$/,m=>`المصنعية، ${m[1]} جنيه/جم`],[/^VAT (\d+)% on making$/,m=>`ضريبة ${m[1]}% على المصنعية`],[/^Shop deduction, (\d+) EGP\/g$/,m=>`خصم المحل، ${m[1]} جنيه/جم`],
+[/^Bar premium (.+)%$/,m=>`علاوة السبيكة ${m[1]}%`],[/^Buy-back discount (.+)%$/,m=>`خصم إعادة الشراء ${m[1]}%`],[/^BTC premium and making, (.+)%$/,m=>`علاوة BTC والتصنيع، ${m[1]}%`],[/^Dealer spread (.+)%$/,m=>`فرق التاجر ${m[1]}%`],
+[/^([\d,.]+) EGP per gram, (-?[\d.]+)% against the market price\.$/,m=>`${m[1]} جنيه للجرام، ${m[2]}% مقارنة بسعر السوق.`],
+[/^1 (.+?) \(([A-Z]{3})\) in Egyptian pounds$/,m=>`1 ${EX[m[1]]||m[1]} (${m[2]}) بالجنيه المصري`],
+[/^Source: (.*?)(?:, (.*?))?\. Market rates, which can differ from bank and exchange-office rates\.$/,m=>`المصدر: ${EX[m[1]]||m[1]}${m[2]?"، "+m[2]:""}. أسعار السوق، وقد تختلف عن أسعار البنوك ومكاتب الصرف.`],
+[/^(\S+) ([A-Z]{3})$/,m=>`${m[1]} ${m[2]}`],[/^(\S+) ([A-Z]{3}), (.+)$/,m=>`${m[1]} ${m[2]}، ${EX[m[3]]||m[3]}`],[/^([\d,.]+) ([A-Z]{3}) in ([A-Z]{3})$/,m=>`${m[1]} ${CNA[m[2]]} إلى ${CNA[m[3]]}`],
+[/^\$([\d,.]+) per ounce$/,m=>`$${m[1]} للأونصة`],
+[/^News tracker: (\d+) headlines from the last 48 hours$/,m=>`متتبع الأخبار: ${m[1]} خبراً خلال آخر 48 ساعة`],
+[/^Training (.+) model…$/,m=>`جارٍ تدريب نموذج ${HZ[m[1]]||m[1]}…`],
+[/^The model expects the price to (rise|fall|stay about the same) \((.+?)\) from ([\d,.]+)\. (.*)$/,m=>`يتوقع النموذج أن ${DIR[m[1]]} السعر (${m[2]}) من ${m[3]}. `+(/^It showed some real skill in past tests for (\d) of 3 horizons\.$/.test(m[4])?`أظهر مهارة حقيقية في الاختبارات السابقة لـ ${m[4].match(/for (\d)/)[1]} من 3 آفاق زمنية.`:"في الاختبارات السابقة لم يتفوق على افتراض «لا تغيير»، لذلك يُقرَّب هذا التوقع نحو عدم التغيير وثقته منخفضة.")],
+[/^News check: the latest news is (.+), which moved the 1-month forecast by (.+)\.$/,m=>`فحص الأخبار: آخر الأخبار ${({"supportive of gold":"داعمة للذهب","negative for gold":"سلبية للذهب","mixed":"متباينة"})[m[1]]||m[1]}، وقد غيّرت توقع الشهر بمقدار ${m[2]}.`],
+[/^: 21K ([\d,.]+) EGP \((.+) since (.+)\)$/,m=>`: عيار 21 ${m[1]} جنيه (${m[2]} منذ ${m[3]})`],[/^: ([\d,.]+) EGP \(likely ([\d,.]+) to ([\d,.]+)\)$/,m=>`: ${m[1]} جنيه (المتوقع بين ${m[2]} و${m[3]})`],
+[/^(\d+(?:\.\d+)?) ?g of (\d+)K (jewelry|bar\/coin|BTC bar)$/,m=>`${m[1]} جم من عيار ${m[2]} ${TY[m[3]]}`],
+[/^(Buying|Selling) «(.+)»:$/,(m)=>`${m[1]==="Buying"?"شراء":"بيع"} «${trLine(m[2].replace(/ g of /," g of "))}»:`],
+[/^«You (pay|receive): ([\d,.]+) EGP» \(([\d,.]+) per gram, (-?[\d.]+)% vs market\)\.$/,m=>`«${m[1]==="pay"?"تدفع":"تستلم"}: ${m[2]} جنيه» (${m[3]} للجرام، ${m[4]}% مقارنة بالسوق).`],
+[/^How many grams of (\d+)K (jewelry|bar\/coin|BTC bar) are you (buying|selling)\?$/,m=>`كم جراماً من ${TY[m[2]]} عيار ${m[1]} ${m[3]==="buying"?"تشتري":"تبيع"}؟`],
+[/^Over the next month Andy expects 21K to «(.+)» \(([+-][\d.]+)%, now ([\d,.]+)\)\.$/,m=>`خلال الشهر القادم يتوقع آندي أن عيار 21 «${DIR[m[1]]||m[1]}» (${m[2]}%، والآن ${m[3]}).`],
+[/^(Tomorrow|In (\d+) days): «([\d,.]+)» \(range ([\d,.]+) to ([\d,.]+)\)$/,m=>`${m[1]==="Tomorrow"?"غداً":"بعد "+m[2]+" أيام"}: «${m[3]}» (النطاق ${m[4]} إلى ${m[5]})`],
+[/^Confidence: «(\w+)» \(short history\)\.$/,m=>`الثقة: «${CF[m[1]]}» (تاريخ أسعار قصير).`],[/^Why:$/,()=>"السبب:"],
+[/^AI model \(1 month\): ([+-][\d.]+%) to about ([\d,.]+), (.+)\.$/,m=>`نموذج الذكاء الاصطناعي (شهر): ${m[1]} إلى نحو ${m[2]}، ${m[3]==="with measurable skill in past tests"?"بمهارة ملموسة في الاختبارات السابقة":"بثقة منخفضة (لا ميزة مثبتة في الاختبارات السابقة)"}.`],
+[/^«(Wait\.|Sell now\.|Toss-up\.|Good time to buy\.|Wait for a dip\.|Buy in small parts\.|Keep holding\.)»(?: (.+))?$/,m=>"«"+({"Wait.":"انتظر.","Sell now.":"بع الآن.","Toss-up.":"الأمر متكافئ.","Good time to buy.":"وقت جيد للشراء.","Wait for a dip.":"انتظر هبوطاً.","Buy in small parts.":"اشترِ على دفعات صغيرة.","Keep holding.":"استمر في الاحتفاظ."})[m[1]]+"»"+(m[2]?" "+({"Prices look set to rise.":"الأسعار تبدو مرشحة للارتفاع.","Prices look set to fall.":"الأسعار تبدو مرشحة للانخفاض.","Sell only if you need the cash.":"بع فقط إذا احتجت السيولة.","The trend is unclear.":"الاتجاه غير واضح.","Don’t trade on short-term noise.":"لا تتاجر بناءً على تقلبات قصيرة الأجل."})[m[2]]:"")],
+[/^21K is ([\d,.]+)\. Expected in 30 days: ([\d,.]+) \(([+-][\d.]+)%\)\. Confidence: (\w+)\.$/,m=>`عيار 21 الآن ${m[1]}. المتوقع بعد 30 يوماً: ${m[2]} (${m[3]}%). الثقة: ${CF[m[4]]}.`],
+[/^«Plan:» (.+)$/,m=>"«الخطة:» "+planAr(m[1])],
+[/^I’d change my mind if 21K moves (below|above) ([\d,.]+)\.$/,m=>`سأغيّر رأيي إذا تحرك عيار 21 ${m[1]==="below"?"تحت":"فوق"} ${m[2]}.`],
+[/^Your ([\d,.]+) g (\d+)K (BTC bar|bar|jewelry) would bring about «([\d,.]+) EGP» if sold today\. At the 30-day estimate it would be about «([\d,.]+) EGP» \(([+-]?[\d,.]+)\)\.$/,m=>`${TY[m[3]]} وزنها ${m[1]} جم عيار ${m[2]} ستدر نحو «${m[4]} جنيه» إذا بيعت اليوم. وبتقدير 30 يوماً ستكون نحو «${m[5]} جنيه» (${m[6]}).`],
+[/^«(\d+)K»: buy ([\d,.]+), sell ([\d,.]+) EGP\/g$/,m=>`«عيار ${m[1]}»: شراء ${m[2]}، بيع ${m[3]} جنيه/جم`],[/^Gap between buy and sell: ([\d,.]+) EGP\.$/,m=>`الفرق بين الشراء والبيع: ${m[1]} جنيه.`],
+[/^«BTC bars \(24K, estimated\)»$/,()=>"«سبائك BTC (عيار 24، تقديرية)»"],[/^([\d,.]+) g: buy ([\d,.]+), sell ([\d,.]+)$/,m=>`${m[1]} جم: شراء ${m[2]}، بيع ${m[3]}`],
+[/^«Gold pound \(8g, 21K\)»: buy ([\d,.]+), sell ([\d,.]+)$/,m=>`«جنيه ذهب (8 جم، عيار 21)»: شراء ${m[1]}، بيع ${m[2]}`],[/^«24K bar 10g»: buy ([\d,.]+)$/,m=>`«سبيكة 10 جم عيار 24»: شراء ${m[1]}`],[/^«Ounce»: ([\d,.]+) EGP$/,m=>`«الأونصة»: ${m[1]} جنيه`],
+[/^([\d,.]+) g of (\d+)K equals ([\d,.]+) g of 24K, which is above the 85 g threshold\. Zakat is 2\.5%: «([\d,.]+) g of gold», worth about «([\d,.]+) EGP» at today’s sell price\.$/,m=>`${m[1]} جم من عيار ${m[2]} تعادل ${m[3]} جم من عيار 24، وهي أعلى من نصاب 85 جم. الزكاة 2.5%: «${m[4]} جم من الذهب»، وقيمتها نحو «${m[5]} جنيه» بسعر البيع اليوم.`],
+[/^([\d,.]+) g of (\d+)K equals ([\d,.]+) g of 24K, below the 85 g threshold, so zakat isn’t due on this gold alone \(check your other savings too\)\.$/,m=>`${m[1]} جم من عيار ${m[2]} تعادل ${m[3]} جم من عيار 24، أقل من نصاب 85 جم، فلا زكاة على هذا الذهب وحده (راجع مدخراتك الأخرى أيضاً).`],
+[/^«News tracker» \((\d+) headlines, last 48h\): overall «(.+)»\.$/,m=>`«متتبع الأخبار» (${m[1]} خبراً، آخر 48 ساعة): الصورة العامة «${({"supportive of higher gold prices":"داعمة لارتفاع أسعار الذهب","pushing gold prices lower":"تدفع أسعار الذهب للانخفاض","mixed, no clear push":"متباينة دون اتجاه واضح"})[m[2]]||m[2]}».`],
+[/^(World gold news|Egyptian pound|US rates|World tension): (.+)$/,m=>`${EX[m[1]]}: ${EX[m[2]]||m[2]}`],
+[/^«Exchange rates in EGP»$/,()=>"«أسعار الصرف بالجنيه»"],[/^(\S+) 1 ([A-Z]{3}) = ([\d,.]+) EGP(?: \((.+)\))?$/,m=>`${m[1]} 1 ${m[2]} = ${m[3]} جنيه`+(m[4]?` (${m[4]})`:"")],[/^([\d.]+) ([A-Z]{3}) = ([\d,.]+) EGP$/,m=>`${m[1]} ${m[2]} = ${m[3]} جنيه`],
+[/^Price swings are (low|moderate|high) right now and my confidence is «(\w+)» \((\d+)%\)\. Andy only has about (\d+) real readings.*$/,m=>`تقلبات الأسعار ${({low:"منخفضة",moderate:"متوسطة",high:"عالية"})[m[1]]} الآن وثقتي «${CF[m[2]]}» (${m[3]}%). لدى آندي نحو ${m[4]} قراءة حقيقية فقط، ولا يستطيع أي نموذج توقع الذهب بدقة. استخدم الخطة كدليل، واشترِ على دفعات، ولا تستثمر مالاً قد تحتاجه قريباً.`]];
+const sz=s=>s.replace(/^(\d+(?:\.\d+)?)\s?g$/,"$1 جم").replace(/^1 oz$/,"1 أونصة");
+const PL=[[/^Sell 0–25% now, and the rest if the price passes ([\d,.]+) or falls below ([\d,.]+)\.$/,m=>`بع 0–25% الآن، والباقي إذا تجاوز السعر ${m[1]} أو هبط تحت ${m[2]}.`],[/^Sell a third now, a third in a week, a third in two weeks\. A good target is about ([\d,.]+) for 21K; don’t wait past a drop below ([\d,.]+)\.$/,m=>`بع الثلث الآن والثلث بعد أسبوع والثلث بعد أسبوعين. هدف جيد نحو ${m[1]} لعيار 21، ولا تنتظر بعد هبوط تحت ${m[2]}.`],[/^Buy at most 25% now and wait for about ([\d,.]+) for the rest\.$/,m=>`اشترِ 25% كحد أقصى الآن وانتظر نحو ${m[1]} للباقي.`]];
+function planAr(s){for(const[re,fn]of PL){const m=s.match(re);if(m)return fn(m)}for(const[p,a]of PRE)if(s.startsWith(p))return a;return s}
+const TN=[[/^the 5-week trend is (rising|falling)$/,m=>`اتجاه الأسابيع الخمسة ${m[1]==="rising"?"صاعد":"هابط"}`],[/^recent prices are (above|below) the usual level$/,m=>`الأسعار الأخيرة ${m[1]==="above"?"فوق":"تحت"} مستواها المعتاد`],[/^momentum favors (buyers|sellers)$/,m=>`الزخم في صالح ${m[1]==="buyers"?"المشترين":"البائعين"}`],
+[/^the price rose very fast \(RSI (\d+)\), so a pullback is possible$/,m=>`ارتفع السعر بسرعة كبيرة (RSI ${m[1]}) فقد يحدث تراجع`],[/^the price fell very fast \(RSI (\d+)\), so a bounce is likely$/,m=>`انخفض السعر بسرعة كبيرة (RSI ${m[1]}) فالارتداد محتمل`],[/^the price is not stretched either way \(RSI (\d+)\)$/,m=>`السعر غير مبالغ فيه في أي اتجاه (RSI ${m[1]})`],
+[/^it is (up|down) over the last few readings$/,m=>`السعر ${m[1]==="up"?"مرتفع":"منخفض"} خلال آخر القراءات`],[/^it sits (\d+)% below the March peak, which leaves long-term room to recover$/,m=>`يقع ${m[1]}% تحت ذروة مارس، مما يترك مجالاً للتعافي على المدى الطويل`],[/^the news assumptions lean (bullish|bearish|neutral)$/,m=>`افتراضات الأخبار تميل إلى ${({bullish:"الإيجابية",bearish:"السلبية",neutral:"الحياد"})[m[1]]}`],[/^the signals are mixed$/,()=>"الإشارات متباينة"],
+[/^but on the other side, (.+)$/,m=>"ولكن على الجانب الآخر، "+tn(m[1])]];
+function tn(x){for(const[re,fn]of TN){const m=x.match(re);if(m)return fn(m)}return x}
+const fin=s=>s.replace(/EGP\/g/g,"جنيه/جم").replace(/\bEGP\b/g,"جنيه").replace(/(\d)\s?g\b/g,"$1 جم").replace(/(\d+)K\b/g,"عيار $1");
+function trLine(v){const k=v.replace(/\s+/g," ").trim();if(!k||!/[A-Za-z]/.test(k))return v;const lead=(v.match(/^\s*/)||[""])[0],trail=(v.match(/\s*$/)||[""])[0];let o=null;
+if(EX[k]!==undefined)o=EX[k];else{for(const[re,fn]of RX){const m=k.match(re);if(m){o=fn(m,k);break}}
+if(o===null)for(const[p,a]of PRE)if(k.startsWith(p)){o=a.replace("%S%",(k.match(/about ([\d,.]+)/)||[,""])[1]);break}
+if(o===null){const mm=k.match(/^(.+?): (-?[\d,.]+)$/);if(mm){const l=trLine(mm[1]);if(l!==mm[1])o=l+": "+mm[2]}}}
+return o===null?v:lead+fin(o)+trail}
+function trChat(h){const f=String(h).replace(/<b>/g,"«").replace(/<\/b>/g,"»").replace(/<br\s*\/?>/g,"\n");
+return f.split("\n").map(l=>{const bl=l.startsWith("• ");const body=bl?l.slice(2):l;let o=bl?tn(body):body;if(o===body)o=trLine(body);if(o===body){const w=body.match(/^«(.+)»$/);if(w){const t=trLine(w[1]);if(t!==w[1])o="«"+t+"»"}}if(bl&&o===body)return l;return (bl?"• ":"")+o}).join("\n").replace(/«/g,"<b>").replace(/»/g,"</b>")}
+function trDom(root){const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;const L=[];while(n=w.nextNode())L.push(n);for(const x of L){const p=x.parentElement;if(!p||p.closest('#log,script,style,#news a'))continue;const t=trLine(x.nodeValue);if(t!==x.nodeValue)x.nodeValue=t}}
+function startAr(){document.documentElement.lang="ar";document.documentElement.dir="rtl";document.querySelectorAll('[placeholder],[aria-label]').forEach(e=>{['placeholder','aria-label'].forEach(a=>{const v=e.getAttribute(a);if(v&&EX[v])e.setAttribute(a,EX[v])})});
+trDom(document.body);const ob=new MutationObserver(ms=>{ob.disconnect();for(const m of ms){if(m.type==="characterData"){const p=m.target.parentElement;if(p&&!p.closest('#log,#news a')){const t=trLine(m.target.nodeValue);if(t!==m.target.nodeValue)m.target.nodeValue=t}}else m.addedNodes.forEach(a=>{if(a.nodeType===3){const p=a.parentElement;if(p&&!p.closest('#log,#news a')){const t=trLine(a.nodeValue);if(t!==a.nodeValue)a.nodeValue=t}}else if(a.nodeType===1)trDom(a)})}ob.observe(document.body,{childList:true,subtree:true,characterData:true})});ob.observe(document.body,{childList:true,subtree:true,characterData:true})}
+
+// ---- wiring ----
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.pg').forEach(p=>p.classList.toggle('on',p.id===b.dataset.t))});
+[["sa","a"],["st","t"]].forEach(([id,key])=>$(id).querySelectorAll('button').forEach(b=>b.onclick=()=>{cv[key]=b.dataset.v;$(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));calc()}));
+["ck","cw","cm","cv","cs","cd","cp","cb","cx","cq"].forEach(i=>$(i).addEventListener('input',calc));
+["f1","f2","f3","f4"].forEach(i=>{$(i).addEventListener('change',outlook);$(i).addEventListener('change',()=>{newsManual=true})});
+$('form').onsubmit=e=>{e.preventDefault();const v=$('q').value.trim();if(v){$('q').value="";ask(v)}};
+$('nc').onclick=newChat;
+['cfr','cto'].forEach((id,k)=>{$(id).innerHTML=Object.keys(CN).map(c=>`<option value="${c}"${c===(k?'EGP':'USD')?' selected':''}>${CN[c][1]} ${c}, ${CN[c][0]}</option>`).join("");$(id).addEventListener('change',convRender)});$('cam').addEventListener('input',convRender);$('cswap').onclick=()=>{const a=$('cfr').value;$('cfr').value=$('cto').value;$('cto').value=a;convRender()};
+$('upd').onclick=()=>{const p=+$('ip').value,sp=+$('isp').value;if(p>0){if(raw)st.cal=p/raw;st.p=p;st.sp=sp>=0?sp:45;st.d=new Date().toISOString().slice(0,10);st.hist[st.d]=p;save();all()}};
+function all(){prices();calc();outlook();if(USD)usdRender()}
+async function poll(){const L=$('live');try{const r=await fetch('/api/gold',{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json();const lc=j.local&&j.local["21"];if(!(lc&&lc.pay>0)&&!(j.oz>0&&j.fx>0))throw 0;
+if(j.oz>0)WORLD=j.oz;raw=j.oz>0&&j.fx>0?j.oz*j.fx/31.1035*21/24:null;if(lc&&lc.pay>0){st.p=lc.pay;st.sp=Math.max(0,lc.pay-lc.get);if(raw)st.cal=st.p/raw;src="local"}else{if(j.adj>0&&!st.calUser)st.cal=j.adj;else if(!st.cal)st.cal=st.p/raw;st.p=raw*st.cal;src="world"}st.d=new Date().toISOString().slice(0,10);st.hist[st.d]=st.p;save();
+if(document.activeElement!==$('ip'))$('ip').value=st.p.toFixed(2);all();trackEval();L.className="live on";L.innerHTML="<b></b>Live · "+(src==="local"?(j.adjusted?"Souq El Dahab, live-adjusted":"Souq El Dahab prices"):"world price estimate")+" · "+new Date().toLocaleTimeString(LOC)+(src==="local"&&tm(j.localUpdated)?" · last Souq El Dahab post "+tm(j.localUpdated):"")}
+catch(e){L.className="live";L.innerHTML="<b></b>Offline, last price"}}
+$('ip').value=st.p.toFixed(2);$('isp').value=st.sp;all();const SUN='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',MOON='<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z"/></svg>';
+const thEff=()=>document.documentElement.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"),thIcon=()=>{$('theme').innerHTML=thEff()==="dark"?SUN:MOON};
+thIcon();$('theme').onclick=()=>{const n=thEff()==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);try{localStorage.setItem("andy_theme",n)}catch(e){}thIcon()};
+$('lang').textContent=LANG==="ar"?"English":"العربية";$('lang').onclick=()=>{try{localStorage.setItem("andy_lang",LANG==="ar"?"en":"ar")}catch(e){}location.reload()};
+boot();aiHook();usdLoad();setInterval(usdLoad,6e4);newsLoad();setInterval(newsLoad,9e5);poll();setInterval(poll,15000);
+if(LANG==="ar")startAr();
+</script></body></html>
